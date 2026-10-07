@@ -7,9 +7,9 @@ Schüler Felix Wiesner, Moritz Weißenhofer, David Gesswagner, Stefan Tauschek
 Firma/Ansprechpartner (inkl. Email und Telnr.) Tauschek Sanitär Heizung GmbH, roland@tauschek.net, 0664 3126660
 ## Thema aus fachlicher Sicht 
 ### Was macht der Kunde (sein Business)?
-Das Unternehmen plant, installiert und wartet Heizungen, Bäder, Klima- und Solarvorgänge sowie Lüftungs- und Staubsaugeranlagen.
+Das Unternehmen plant, installiert und wartet Heizungen(Fokus des Projekts)Darüber hinaus noch Bäder, Klima- und Solarvorgänge sowie Lüftungs- und Staubsaugeranlagen.
 ### Was ist dabei das Problem?
-Das Unternehmen weiß nicht, welcher Endkunde die Heizung sanieren will und der Endkunde eine Kostenschätzung haben will, was das Projekt kosten wird.
+Das Unternehmen weiß nicht, welcher Endkunde die Heizung sanieren will. Kostenschätzung und fragen was der Kunde will soll automatisiert werden
 ### Was ist die gewünschte Lösung?
 Die gewünschte Lösung ist ein Heizungskonfigurator mit Lead-Generierung.
 ### Was sind die wesentlichsten Use-Cases die abgebildet werden?
