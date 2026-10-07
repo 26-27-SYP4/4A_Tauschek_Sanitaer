@@ -4,10 +4,10 @@
 
 ### Wer ist beteiligt? 
 Schüler Felix Wiesner, Moritz Weißenhofer, David Geßwagner, Stefan Tauschek
-Firma/Ansprechpartner (inkl. Email und Telnr.) Tauschek Sanitär Heizung GmbH, roland@tauschek.net, 0664 3126660
-## Thema aus fachlicher Sicht 
+Firma/Ansprechpartner (inkl. Email und Telnr.) Tauschek Sanitär Heizung GmbH(15 Mitarbeiter), roland@tauschek.net, 0664 3126660
+## Thema aus fachlicher Sicht
 ### Was macht der Kunde (sein Business)?
-Das Unternehmen plant, installiert und wartet Heizungen(Fokus des Projekts)Darüber hinaus noch Bäder, Klima- und Solarvorgänge sowie Lüftungs- und Staubsaugeranlagen.
+Das Unternehmen plant, installiert und wartet Heizungen(Fokus des Projekts). Darüber hinaus noch Bäder, Klima- und Solarvorgänge sowie Lüftungs- und Staubsaugeranlagen.
 ### Was ist dabei das Problem?
 Das Problem ist, dass der Aufwand bis zu einer Kostenschätzung bei Projekten hoch ist. Viele dieser Projekte werden in der Folge nicht beauftragt. Somit sind diese Aufwände verschwendet. 
 ### Was ist die gewünschte Lösung?
