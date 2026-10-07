@@ -2,6 +2,7 @@
 
 ## Allgemein
 Als Textformat verwenden wir Markdown
+Filenamen mit Unterstrich "_" trennen
 
 ## Github
 Alle commit messages erfolgen auf Deutsch.
