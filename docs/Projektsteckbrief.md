@@ -14,8 +14,6 @@ Das Problem ist, dass der Aufwand bis zu einer Kostenschätzung bei Projekten ho
 Es soll ein Tool(Heizungskonfigurator mit Lead-Generierung) gebaut werden, womit die Endkunden selbstständig Kosten abschätzen können. So wird bereits im Vorfeld festgestellt, ob jemand echtes Intersesse hat oder die Kostenschätzung das Projekt ausschließen.
 ### Was sind die wesentlichsten Use-Cases die abgebildet werden?
 Heizung auslegen, Angebot schätzen, Lead generieren
-### Gibt es besondere Nicht-Funktionale-Anforderungen (Performance, Usability, …)?
-Performance, Usability, Reliability, Availability
 ### Gibt es Nicht-Ziele (Abgrenzung der Use-Cases)?
 Keine Feinplanung, Kein Onlineshop
 ## Rahmenbedingungen für Software 
