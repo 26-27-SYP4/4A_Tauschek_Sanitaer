@@ -11,19 +11,19 @@
 - Frontend-Backend-Datenbank
 
 ## Verwendete Technologien:
-- Fronted: Angular
+- Fronted: Angular, HTML, JS, TS, CSS
 - Backend: C#
 - Datenbank: SQL
 
 ## Konvention
-- Auf Dokumente aus POS hinweisen
+- Konventionen in Konventionen.md festgelegt
 
 ## Persistierung
 - Datenspeicherung: Alle generierten Leads werden relational in der Kundendatenbank persistiert.
-- Backups: Da Kundendaten generiert werden, muss ein automatisierter täglicher SQL-Dump eingerichtet werden. Backups müssen verschlüsselt und DSGVO-konform auf einem separaten Speichermedium des Unternehmens abgelegt werden.
+- Backups: Da Kundendaten generiert werden, muss ein automatisierter täglicher SQL-Dump eingerichtet werden. (Backups müssen verschlüsselt und DSGVO-konform auf einem separaten Speichermedium des Unternehmens abgelegt werden).
 ## Sicherheit
 - Authentifizierung: Kein Login für Kunden, stattdessen reCaptcha & Rate-Limiting gegen Bots. Installateur Login läuft später über JWT.
-- Verschlüsselung: Kompletter Traffic über HTTPS. Datenbank verschlüssel, Passwörter hashen.
+- Verschlüsselung: Kompletter Traffic über HTTPS. Datenbank verschlüsselt, Passwörter hashen.
 - Logging: Fehler und Systemevents aufzeichnen, niemals echte Kundendaten ins Logfile schreiben
 - App-Sicherheit:
     - Datenbank: Nur Entity Framework Core (ORM) nutzen, um SQL-Injections abzublocken
@@ -39,6 +39,3 @@
 - End-to-End(Simuliert den echten User-Flow im Browser)
 - CI/CD
 
-## Repositories
-- Dokumente werden im Git-Repository im "docs" Ordner gespeichert
-- Code Verwaltung erfolgt über Git-Repository im "src" Ordner gespeichert.
