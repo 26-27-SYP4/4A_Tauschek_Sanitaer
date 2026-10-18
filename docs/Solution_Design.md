@@ -22,7 +22,7 @@
 - Datenspeicherung: Alle generierten Leads werden relational in der Kundendatenbank persistiert.
 - Backups: Da Kundendaten generiert werden, muss ein automatisierter täglicher SQL-Dump eingerichtet werden. (Backups müssen verschlüsselt und DSGVO-konform auf einem separaten Speichermedium des Unternehmens abgelegt werden).
 ## Sicherheit
-- Authentifizierung: Kein Login für Kunden, stattdessen reCaptcha & Rate-Limiting gegen Bots. Installateur Login läuft später über JWT.
+- Authentifizierung: Kein Login für Kunden, stattdessen reCaptcha & Rate-Limiting gegen Bots. Installateur Login läuft später über JWT(JSON web token).
 - Verschlüsselung: Kompletter Traffic über HTTPS. Datenbank verschlüsselt, Passwörter hashen.
 - Logging: Fehler und Systemevents aufzeichnen, niemals echte Kundendaten ins Logfile schreiben
 - App-Sicherheit:
