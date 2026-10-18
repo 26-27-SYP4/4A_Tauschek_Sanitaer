@@ -3,6 +3,6 @@
   
 * Können Sie uns 2-3 konkrete Fallbeispiele durchrechnen (z. B. typisches Einfamilienhaus vs. Altbau), damit wir die Parameter validieren können?
   
-* Wie soll die Informationen in der Verwaltungssoftware angezeigt werden?
+* Wie sollen die Informationen in der Verwaltungssoftware angezeigt werden?
   
 * 
