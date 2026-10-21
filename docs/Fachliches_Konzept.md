@@ -1,8 +1,8 @@
 # Fachliches Konzept: Heizungskonfigurator
-Version: 0.2.0
-Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix
-Auftraggeber: Tauschek Sanitär Heizung GmbH
-AG bedeutet im nächsten Abschnitt: Auftraggeber
+Version: 0.2.0  
+Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix  
+Auftraggeber: Tauschek Sanitär Heizung GmbH  
+AG bedeutet im nächsten Abschnitt: Auftraggeber  
 Endkunde bedeutet im nächstem Abschnitt: Kunde des Ag
 ## Ziel des Projekts
 Ziel des Projekts ist die Entwicklung eines Heizungskonfigurators mit integrierter Kostenschätzung. Dieser soll potenziellen Endkunden ermöglichen, eine passende Heizung zu konfigurieren und eine erste Einschätzung der zu erwartenden Kosten zu erhalten. Dadurch kann der AG bereits im Vorfeld das Interesse der potenziellen Käufer besser einschätzen und gezielt auf interessierte Endkunden zugehen.
