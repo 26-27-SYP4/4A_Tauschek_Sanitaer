@@ -33,6 +33,6 @@ Bei Testdaten schauen dass es anonymisierte Daten sind.
 Sehen können ob ein Kunde bereits ein bestehender Kunde ist.
 
 ## Nächster Schritt:
-Alles was wir neu erfahren haben in ein Fachkonzept fassen
-Ist-Zustand, Kunde macht alles Manuell, ist im Grunde eine Digitalisierung
-Fachkonzept mal von der KI erstellen lassen und das dann genauer überarbeiten
+- Alles was wir neu erfahren haben in ein Fachkonzept fassen
+- Ist-Zustand, Kunde macht alles Manuell, ist im Grunde eine Digitalisierung
+- Fachkonzept mal von der KI erstellen lassen und das dann genauer überarbeiten
