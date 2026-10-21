@@ -1,4 +1,4 @@
-# Offene Promts
+# Offene Prompts
 
 ## Wiesner: Gemini 14.10-11:40
 Wir haben jetzt beschlossen das der AG über eine Software die eingegangenen Kostenschätzungen mit jeglichen Details angezeigt bekommt. Der Kunde erfährt lediglich die Preisspanne und das die kostenschätzung bei unseren AG angekommen ist. 
