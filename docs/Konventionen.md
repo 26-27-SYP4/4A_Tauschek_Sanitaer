@@ -2,7 +2,7 @@
 
 ## Sprache
 Endkunde: Der Kunde unseres Kunden
-Auftraggeber(AG) Geschäftsführer der Tauschek GmbH
+Auftraggeber(AG): Geschäftsführer der Tauschek GmbH
 
 ## Allgemein
 Als Textformat verwenden wir Markdown
