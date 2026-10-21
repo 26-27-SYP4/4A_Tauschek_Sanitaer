@@ -1,5 +1,9 @@
 # SYP Projekt Konventionen
 
+## Sprache
+Endkunde: Der Kunde unseres Kunden
+Auftraggeber(AG) Geschäftsführer der Tauschek GmbH
+
 ## Allgemein
 Als Textformat verwenden wir Markdown
 Filenamen mit Unterstrich "_" trennen
