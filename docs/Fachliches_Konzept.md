@@ -7,7 +7,7 @@ Endkunde bedeutet im nächstem Abschnitt: Kunde des Ag
 ## Ziel des Projekts
 Ziel des Projekts ist die Entwicklung eines Heizungskonfigurators mit integrierter Kostenschätzung. Dieser soll potenziellen Endkunden ermöglichen, eine passende Heizung zu konfigurieren und eine erste Einschätzung der zu erwartenden Kosten zu erhalten. Dadurch kann der AG bereits im Vorfeld das Interesse der potenziellen Käufer besser einschätzen und gezielt auf interessierte Endkunden zugehen.
 ## Wer wird das System verwenden?
-Der Heizungskonfigurator wird von den Endkunden der Firma verwendet. Die Leadverwaltungssoftware wird von den Geschäftsführern der Firma genutzt.
+Der Heizungskonfigurator wird von den Endkunden der Firma verwendet. Die Leadverwaltungssoftware wird von den Geschäftsführern, Mitarbeiter und Administratoren der Firma genutzt.
 ## Ist-Zustand
 Endkunde geht in die Firma wenn er Heizung kaufen will. AG stellt Fragen zur Heizung, wie es aktuell ist und was sich der Endkunde vorstellt. AG schreibt selbst Angebot, sie gehen das Angebot dann gemeinsam nochmal durch und wenn alles passt wird der Auftrag bestätigt und die Heizung montiert.
 ## Soll-Zustand
