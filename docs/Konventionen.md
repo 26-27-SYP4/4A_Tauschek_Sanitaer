@@ -9,8 +9,9 @@ Als Textformat verwenden wir Markdown
 Filenamen mit Unterstrich "_" trennen
 
 ## Github
-Alle commit messages erfolgen auf Deutsch.  
-Bevor etwas gepusht wird/branches auf main gemerged werden, muss es von jemand anderem überprüft werden.
+Alle commit messages erfolgen auf Deutsch.
+Für jede Programmier-Issue wird ein neuer Branch erstellt
+Branches werden von einer anderen Person gemerged, von der sie implementiert wurden
 
 ## Repositories
 - Dokumente werden im Git-Repository im "docs" Ordner gespeichert
