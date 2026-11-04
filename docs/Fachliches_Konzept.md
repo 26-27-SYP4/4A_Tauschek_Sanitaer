@@ -1,5 +1,5 @@
 # Fachliches Konzept: Heizungskonfigurator
-Version: 0.2.0  
+Version: 0.3.0  
 Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix  
 Auftraggeber: Tauschek Sanitär Heizung GmbH  
 AG bedeutet im nächsten Abschnitt: Auftraggeber  
@@ -11,7 +11,7 @@ Der Heizungskonfigurator wird von den Endkunden der Firma verwendet. Die Leadver
 ## Ist-Zustand
 Endkunde geht in die Firma wenn er Heizung kaufen will. AG stellt Fragen zur Heizung, wie es aktuell ist und was sich der Endkunde vorstellt. AG schreibt selbst Angebot, sie gehen das Angebot dann gemeinsam nochmal durch und wenn alles passt wird der Auftrag bestätigt und die Heizung montiert.
 ## Soll-Zustand
-Wenn der Endkunde eine Heizung will, geht er auf die Website der Firma, wo es einen neuen Abschnitt “Heizungskonfigurator” gibt. Der Endkunde kann beim Heizungskonfigurator bequem eingeben, was er will. Es wird automatisch ein PDF generiert, indem die Kostenschätzung enthalten ist. Gleichzeitig wird eine Mail an den AG gesendet mit genaueren Details.
+Wenn der Endkunde eine Heizung will, geht er auf die Website der Firma, wo es einen neuen Abschnitt “Heizungskonfigurator” gibt. Der Endkunde kann beim Heizungskonfigurator bequem eingeben, was er will. Es wird automatisch ein PDF generiert, indem die Kostenschätzung enthalten ist. Gleichzeitig wird eine Mail an den AG gesendet und der Lead auf einer Verwaltungsseite gespeichert
 ## Fragenkatalog
 Für die Entwicklung des Heizungskonfigurators wurde vom Geschäftsführer ein Fragenkatalog zur Verfügung gestellt. Dieser dient als Grundlage für die Gestaltung des Konfigurators und legt fest, welche Informationen von den Endkunden abgefragt werden sollen.
 
