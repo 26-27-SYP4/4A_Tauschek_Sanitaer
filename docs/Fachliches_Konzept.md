@@ -20,8 +20,6 @@ Der Fragenkatalog umfasst mehrere Schritte, in denen Informationen zum bestehend
 Am Ende des Konfigurationsprozesses geben die Endkunden ihre Kontaktdaten bekannt und stimmen den Datenschutzbestimmungen zu. Die gesammelten Informationen dienen als Grundlage für eine erste Kostenschätzung und die anschließende Bearbeitung der Kundenanfragen.
 
 Der Konfigurator muss flexibel in der Erweiterbarkeit der Fragen sein, damit bestehende Fragen angepasst, entfernt oder neue Fragen hinzugefügt werden können. Für Fragen, die Endkunden möglicherweise nicht beantworten können, müssen geeignete alternative Antwortmöglichkeiten gefunden werden. An diesen Anpassungen wird derzeit noch gearbeitet.
-<<<<<<< HEAD
-=======
 
 ## Bausteine
 Die Kostenschätzung wird aus standardisierten Bausteinen zusammengesetzt. Ein Baustein ist ein konkretes, vordefiniertes Produkt oder Leistungspaket aus dem Sortiment des AG, zum Beispiel eine Luft-Wärmepumpe mit bestimmter Heizleistung, die für ein großes Einfamilienhaus geeignet ist. Das System wählt anhand der Antworten des Endkunden passende Bausteine aus und zählt ihre Preise zu einem groben Angebot zusammen.
