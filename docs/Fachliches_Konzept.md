@@ -193,4 +193,3 @@ Die technische Umsetzung ist noch offen. Zur Auswahl stehen:
 | BN-08 | Benutzer wählen selbst, über welche Kanäle sie benachrichtigt werden. | C |
 | BN-09 | Erinnerung bei Leads, die zu lange unbearbeitet bleiben. | C |
 | BN-10 | Mindestens ein weiterer Kanal neben E-Mail (Push, SMS oder WhatsApp). | C |
->>>>>>> d247e309c6bef1512f646a7fae193efbfbc8121e
