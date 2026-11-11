@@ -1,6 +1,7 @@
 # Die Folgenden Dinge sind noch unklar und müssen beim AG nachgefragt werden
 * Was soll die Kostenschätzung(PDF) für den Kunden alles beinhalten? Welche Features sollen in der Lead-Verwaltungssoftware geben? Bsp.: Status festlegen (ausstehend, besprechen, planen, umsetzen, abgeschlossen)
 * Welche Rollen sollen auf die Verwaltungssoftware zugreifen können?
+* Benachrichtigungssystem für den Lead-Eingang auswählen (Mail, WhatsApp, SMS, ...)
 
 # Fragen zu den Fragen des Heizungskonfigurators:
  * Eine extra Frage ob er bereits Kunde ist?
