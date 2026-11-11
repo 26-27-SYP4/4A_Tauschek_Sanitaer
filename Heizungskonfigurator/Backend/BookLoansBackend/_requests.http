@@ -1,0 +1,35 @@
+@baseUrl = http://localhost:5000
+##################################################
+
+
+################################################## Authors
+GET {{baseUrl}}/Authors
+#####
+
+################################################## Books
+GET {{baseUrl}}/Books?search=abc&authorId=1
+#####
+GET {{baseUrl}}/Books/1
+#####
+
+################################################## Diagnostics
+GET {{baseUrl}}/Diagnostics/fail
+#####
+
+################################################## Loans
+GET {{baseUrl}}/Loans?bookId=1
+#####
+POST {{baseUrl}}/Loans
+Content-type: application/json
+
+{
+   "bookId": 1,
+   "borrowerName": "abc"
+}
+#####
+PUT {{baseUrl}}/Loans/1/return
+#####
+
+################################################## Values
+GET {{baseUrl}}/Values/Books
+#####

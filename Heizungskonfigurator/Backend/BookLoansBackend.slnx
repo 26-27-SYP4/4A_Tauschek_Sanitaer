@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BookLoansBackend/BookLoansBackend.csproj" />
+  <Project Path="BookLoansDb/BookLoansDb.csproj" />
+</Solution>

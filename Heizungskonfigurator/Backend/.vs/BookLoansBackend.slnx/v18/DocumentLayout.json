@@ -1,0 +1,241 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\_requests.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\_requests.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\controllers\\loanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\controllers\\loanscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\controllers\\bookscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A76FFD-2050-2DD9-AA74-CF7A39EBE132}|BookLoansDb\\BookLoansDb.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansdb\\bookloanscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A76FFD-2050-2DD9-AA74-CF7A39EBE132}|BookLoansDb\\BookLoansDb.csproj|solutionrelative:bookloansdb\\bookloanscontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\dtos\\loandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\dtos\\loandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\dtos\\newloandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\dtos\\newloandto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\services\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\services\\dbservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A76FFD-2050-2DD9-AA74-CF7A39EBE132}|BookLoansDb\\BookLoansDb.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansdb\\loan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A76FFD-2050-2DD9-AA74-CF7A39EBE132}|BookLoansDb\\BookLoansDb.csproj|solutionrelative:bookloansdb\\loan.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{E2A76FFD-2050-2DD9-AA74-CF7A39EBE132}|BookLoansDb\\BookLoansDb.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansdb\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{E2A76FFD-2050-2DD9-AA74-CF7A39EBE132}|BookLoansDb\\BookLoansDb.csproj|solutionrelative:bookloansdb\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\services\\loanoperationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\services\\loanoperationresult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\controllers\\authorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\controllers\\authorscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|c:\\users\\felix\\schule\\2026_27\\pos_2026_27\\projekte\\libraryexplorer\\backend\\bookloansbackend\\bookloansbackend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{383E9D11-7879-7A85-9CAD-2EC246819E9C}|BookLoansBackend\\BookLoansBackend.csproj|solutionrelative:bookloansbackend\\bookloansbackend.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 9,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e1b7d1f8-9b3c-49b1-8f4f-bfc63a88835d}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BookLoansContext.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansDb\\BookLoansContext.cs",
+              "RelativeDocumentMoniker": "BookLoansDb\\BookLoansContext.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansDb\\BookLoansContext.cs",
+              "RelativeToolTip": "BookLoansDb\\BookLoansContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:30:41.59Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BooksController.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Controllers\\BooksController.cs",
+              "RelativeDocumentMoniker": "BookLoansBackend\\Controllers\\BooksController.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Controllers\\BooksController.cs",
+              "RelativeToolTip": "BookLoansBackend\\Controllers\\BooksController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:30:23.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Book.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansDb\\Book.cs",
+              "RelativeDocumentMoniker": "BookLoansDb\\Book.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansDb\\Book.cs",
+              "RelativeToolTip": "BookLoansDb\\Book.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:29:19.34Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LoanDto.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Dtos\\LoanDto.cs",
+              "RelativeDocumentMoniker": "BookLoansBackend\\Dtos\\LoanDto.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Dtos\\LoanDto.cs",
+              "RelativeToolTip": "BookLoansBackend\\Dtos\\LoanDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:28:55.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "LoanOperationResult.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Services\\LoanOperationResult.cs",
+              "RelativeDocumentMoniker": "BookLoansBackend\\Services\\LoanOperationResult.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Services\\LoanOperationResult.cs",
+              "RelativeToolTip": "BookLoansBackend\\Services\\LoanOperationResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:27:37.137Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DbService.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Services\\DbService.cs",
+              "RelativeDocumentMoniker": "BookLoansBackend\\Services\\DbService.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Services\\DbService.cs",
+              "RelativeToolTip": "BookLoansBackend\\Services\\DbService.cs",
+              "ViewState": "AgIAAFgAAAAAAAAAAAAmwGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:27:24.254Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "LoansController.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Controllers\\LoansController.cs",
+              "RelativeDocumentMoniker": "BookLoansBackend\\Controllers\\LoansController.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Controllers\\LoansController.cs",
+              "RelativeToolTip": "BookLoansBackend\\Controllers\\LoansController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:26:33.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "_requests.http",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\_requests.http",
+              "RelativeDocumentMoniker": "BookLoansBackend\\_requests.http",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\_requests.http",
+              "RelativeToolTip": "BookLoansBackend\\_requests.http",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAYwAkAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2026-10-19T13:23:54.803Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Loan.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansDb\\Loan.cs",
+              "RelativeDocumentMoniker": "BookLoansDb\\Loan.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansDb\\Loan.cs",
+              "RelativeToolTip": "BookLoansDb\\Loan.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-01T17:29:29.421Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "NewLoanDto.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Dtos\\NewLoanDto.cs",
+              "RelativeDocumentMoniker": "BookLoansBackend\\Dtos\\NewLoanDto.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Dtos\\NewLoanDto.cs",
+              "RelativeToolTip": "BookLoansBackend\\Dtos\\NewLoanDto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-11-09T15:21:15.95Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\appsettings.json",
+              "RelativeDocumentMoniker": "BookLoansBackend\\appsettings.json",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\appsettings.json",
+              "RelativeToolTip": "BookLoansBackend\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAABqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-10-19T13:25:46.75Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "AuthorsController.cs",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Controllers\\AuthorsController.cs",
+              "RelativeDocumentMoniker": "BookLoansBackend\\Controllers\\AuthorsController.cs",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\Controllers\\AuthorsController.cs",
+              "RelativeToolTip": "BookLoansBackend\\Controllers\\AuthorsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-10-19T13:23:50.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "BookLoansBackend.csproj",
+              "DocumentMoniker": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\BookLoansBackend.csproj",
+              "RelativeDocumentMoniker": "BookLoansBackend\\BookLoansBackend.csproj",
+              "ToolTip": "C:\\Users\\Felix\\Schule\\2026_27\\POS_2026_27\\Projekte\\LibraryExplorer\\backend\\BookLoansBackend\\BookLoansBackend.csproj",
+              "RelativeToolTip": "BookLoansBackend\\BookLoansBackend.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2026-10-19T13:23:44.388Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

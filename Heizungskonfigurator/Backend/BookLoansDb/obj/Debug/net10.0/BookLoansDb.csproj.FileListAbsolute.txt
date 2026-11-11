@@ -1,0 +1,14 @@
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\bin\Debug\net10.0\BookLoansDb.deps.json
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\bin\Debug\net10.0\BookLoansDb.runtimeconfig.json
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\bin\Debug\net10.0\BookLoansDb.dll
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\bin\Debug\net10.0\BookLoansDb.pdb
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.csproj.AssemblyReference.cache
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.GeneratedMSBuildEditorConfig.editorconfig
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.AssemblyInfoInputs.cache
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.AssemblyInfo.cs
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.csproj.CoreCompileInputs.cache
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.dll
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\refint\BookLoansDb.dll
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.pdb
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\BookLoansDb.genruntimeconfig.cache
+c:\Users\Felix\Schule\2026_27\POS_2026_27\Projekte\LibraryExplorer\backend\BookLoansDb\obj\Debug\net10.0\ref\BookLoansDb.dll
