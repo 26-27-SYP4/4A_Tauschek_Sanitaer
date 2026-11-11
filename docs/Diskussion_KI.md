@@ -1,11 +1,11 @@
 ## Welche KI bzw. welches KI-Coding-Tool verwenden wir?
 Claude Pro
-Chat GPT Free, GO & Plus
-Github Copilot
+ChatGPT Free, GO & Plus
+GitHub Copilot
 
 ## Wie arbeiten wir gemeinsam mit der KI?
-- Große Aufgaben in kleinere, überschaubaren Schritte zerlegen.
-- Regeln Festlegen: Explizit erwähnen was die KI einhalten soll.
+- Große Aufgaben in kleinere, überschaubare Schritte zerlegen.
+- Regeln festlegen: Explizit erwähnen, was die KI einhalten soll.
 - Code überprüfen, nicht einfach von der KI copy-pasten
 - Jeder verwendet KI für getrennte Aufgaben
 

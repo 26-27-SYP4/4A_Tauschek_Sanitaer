@@ -1,6 +1,6 @@
 # Solution Design
-- Version 0.1.0
-- Datum: 07.10.2026
+- Version 0.2.0
+- Datum: 11.11.2026
 - Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix
 - Auftraggeber: Tauschek Sanitär Heizung GmbH
 ## Applikations-Typ:
@@ -8,10 +8,11 @@
 ## System Architektur:
 
 ## Software Architektur:
-- Frontend-Backend-Datenbank
+- Ein Git-Repository mit zwei Anwendungen: Heizungskonfigurator (öffentlich) und Verwaltungsapp (Leadverwaltung). Stellt sich später heraus, dass zwei Repositories besser sind, wird aufgeteilt.
+- Jede Anwendung: Frontend-Backend-Datenbank
 
 ## Verwendete Technologien:
-- Fronted: Angular, HTML, JS, TS, CSS
+- Frontend: Angular, HTML, JS, TS, CSS
 - Backend: C#
 - Datenbank: SQL
 
@@ -19,10 +20,11 @@
 - Konventionen in `Konventionen.md` festgelegt (Datei liegt im selben Ordner wie dieses Dokument).
 
 ## Persistierung
-- Datenspeicherung: Alle generierten Leads werden relational in der Kundendatenbank persistiert.
+- Datenspeicherung: Alle generierten Leads werden relational in der Datenbank der Verwaltungsapp persistiert; der Heizungskonfigurator übergibt neue Leads an deren Backend.
+- Bausteine: Der Heizungskonfigurator speichert die Bausteine in seiner eigenen Datenbank. Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank des AG übernommen (nur lesend).
 - Backups: Da Kundendaten generiert werden, muss ein automatisierter täglicher SQL-Dump eingerichtet werden. (Backups müssen verschlüsselt und DSGVO-konform auf einem separaten Speichermedium des Unternehmens abgelegt werden).
 ## Sicherheit
-- Authentifizierung: Kein Login für Kunden, stattdessen reCaptcha & Rate-Limiting gegen Bots. Installateur Login läuft später über JWT(JSON web token).
+- Authentifizierung: Kein Login für Kunden, stattdessen Rate-Limiting und voraussichtlich reCaptcha gegen Bots. Installateur-Login läuft später über JWT (JSON Web Token).
 - Verschlüsselung: Kompletter Traffic über HTTPS. Datenbank verschlüsselt, Passwörter hashen.
 - Logging: Fehler und Systemevents aufzeichnen, niemals echte Kundendaten ins Logfile schreiben
 - App-Sicherheit:
@@ -35,7 +37,7 @@
 
 ## Developer Test Strategie:
 - Unit-Tests
-- Integrationstests(Schnittstelle)
-- End-to-End(Simuliert den echten User-Flow im Browser)
+- Integrationstests (Schnittstelle)
+- End-to-End (simuliert den echten User-Flow im Browser)
 - CI/CD
 

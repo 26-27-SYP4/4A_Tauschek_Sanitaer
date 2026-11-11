@@ -1,17 +1,18 @@
 # Fachliches Konzept: Heizungskonfigurator
-Version: 0.3.0  
+Version: 0.4.0  
+Datum: 11.11.2026  
 Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix  
 Auftraggeber: Tauschek Sanitär Heizung GmbH  
-AG bedeutet im nächsten Abschnitt: Auftraggeber  
-Endkunde bedeutet im nächstem Abschnitt: Kunde des Ag
+AG bedeutet im Folgenden: Auftraggeber  
+Endkunde bedeutet im Folgenden: Kunde des AG (weitere Begriffe siehe `Glossar.md`)
 ## Ziel des Projekts
 Ziel des Projekts ist die Entwicklung eines Heizungskonfigurators mit integrierter Kostenschätzung. Dieser soll potenziellen Endkunden ermöglichen, eine passende Heizung zu konfigurieren und eine erste Einschätzung der zu erwartenden Kosten zu erhalten. Dadurch kann der AG bereits im Vorfeld das Interesse der potenziellen Käufer besser einschätzen und gezielt auf interessierte Endkunden zugehen.
 ## Wer wird das System verwenden?
-Der Heizungskonfigurator wird von den Endkunden der Firma verwendet. Die Leadverwaltungssoftware wird von den Geschäftsführern, Mitarbeiter und Administratoren der Firma genutzt.
+Der Heizungskonfigurator wird von den Endkunden der Firma verwendet. Die Leadverwaltungssoftware wird von den Geschäftsführern, Mitarbeitern und Administratoren der Firma genutzt.
 ## Ist-Zustand
-Endkunde geht in die Firma wenn er Heizung kaufen will. AG stellt Fragen zur Heizung, wie es aktuell ist und was sich der Endkunde vorstellt. AG schreibt selbst Angebot, sie gehen das Angebot dann gemeinsam nochmal durch und wenn alles passt wird der Auftrag bestätigt und die Heizung montiert.
+Der Endkunde geht in die Firma, wenn er eine Heizung kaufen will. Der AG stellt Fragen zur Heizung, wie es aktuell ist und was sich der Endkunde vorstellt. Der AG schreibt selbst ein Angebot, sie gehen das Angebot dann gemeinsam nochmal durch und wenn alles passt, wird der Auftrag bestätigt und die Heizung montiert.
 ## Soll-Zustand
-Wenn der Endkunde eine Heizung will, geht er auf die Website der Firma, wo es einen neuen Abschnitt “Heizungskonfigurator” gibt. Der Endkunde kann beim Heizungskonfigurator bequem eingeben, was er will. Es wird automatisch ein PDF generiert, indem die Kostenschätzung enthalten ist. Gleichzeitig wird eine Mail an den AG gesendet und der Lead auf einer Verwaltungsseite gespeichert
+Wenn der Endkunde eine Heizung will, geht er auf die Website der Firma, wo es einen neuen Abschnitt “Heizungskonfigurator” gibt. Der Endkunde kann beim Heizungskonfigurator bequem eingeben, was er will. Es wird automatisch ein PDF generiert, in dem die Kostenschätzung enthalten ist. Gleichzeitig wird der Lead in der Verwaltungsapp gespeichert und der AG bekommt eine E-Mail, dass ein neuer Lead eingegangen ist. Die Details stehen in der Verwaltungsapp.
 ## Fragenkatalog
 Für die Entwicklung des Heizungskonfigurators wurde vom Geschäftsführer ein Fragenkatalog zur Verfügung gestellt. Dieser dient als Grundlage für die Gestaltung des Konfigurators und legt fest, welche Informationen von den Endkunden abgefragt werden sollen.
 
@@ -24,7 +25,7 @@ Der Konfigurator muss flexibel in der Erweiterbarkeit der Fragen sein, damit bes
 ## Bausteine
 Die Kostenschätzung wird aus standardisierten Bausteinen zusammengesetzt. Ein Baustein ist ein konkretes, vordefiniertes Produkt oder Leistungspaket aus dem Sortiment des AG, zum Beispiel eine Luft-Wärmepumpe mit bestimmter Heizleistung, die für ein großes Einfamilienhaus geeignet ist. Das System wählt anhand der Antworten des Endkunden passende Bausteine aus und zählt ihre Preise zu einem groben Angebot zusammen.
 
-Die Bausteine werden aus der Firmendatenbank des AG in eine eigene Datenbank übernommen und automatisch zusammengeführt.
+Die Bausteine werden über eine API-Schnittstelle aus der Firmendatenbank des AG in die Datenbank des Heizungskonfigurators übernommen und automatisch zusammengeführt.
 
 ### Merkmale eines Bausteins
 | Merkmal | Beschreibung | Beispiel |
@@ -68,15 +69,15 @@ Beispiele für Regeln:
 ### Sonderfälle
 - **Unbekannte Angaben** („Ich weiß nicht“): Das System verwendet einen Standardwert und weist ihn im PDF als Annahme aus.
 - **Kein passender Baustein**, etwa bei sehr hohem Wärmebedarf oder einem Sonderwunsch: Es wird kein automatisches Angebot erstellt; der Lead wird für eine persönliche Beratung markiert.
-- **Technisch nur bedingt passende Kombinationen**, etwa eine Wärmepumpe bei hoher Vorlauftemperatur: Das Angebot enthält einen Hinweis, dass eine Prüfung vor Ort nötig ist.
+- **Unlogische oder technisch ungünstige Kombinationen**, etwa Kühlen mit Heizkörpern oder eine Wärmepumpe bei hoher Vorlauftemperatur: Das System erkennt sie bereits bei der Eingabe und weist den Endkunden darauf hin. Bei technisch nur bedingt passenden Kombinationen wird zusätzlich der Hinweis „Prüfung vor Ort nötig“ gespeichert und im PDF ausgewiesen.
 
 ### Pflege der Bausteine
-Artikel und Preise werden per Import aus der Firmendatenbank übernommen. Leistung, Eignung und Regeln pflegt der Administrator in der Verwaltungskonsole, ohne Programmierung. Der Import läuft regelmäßig, damit die Preise aktuell bleiben.
+Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank übernommen; der Zugriff auf die Firmendatenbank erfolgt nur lesend. Leistung, Eignung und Regeln pflegt der Administrator in der Verwaltungskonsole, ohne Programmierung. Der Abgleich läuft regelmäßig, damit die Preise aktuell bleiben.
 
 ## Leadverwaltung
 
 ### Entstehung eines Leads
-Ein Lead entsteht automatisch, wenn der Kunde den Konfigurator absendet. Er enthält:
+Ein Lead entsteht automatisch, wenn der Kunde den Konfigurator absendet, und wird im Backend der Verwaltungsapp gespeichert. Er enthält:
 - Kontaktdaten des Kunden und die Zustimmung zum Datenschutz
 - alle Antworten aus dem Fragenkatalog
 - die ermittelten Bausteine und die Kostenschätzung
@@ -112,7 +113,7 @@ Die Verwaltungskonsole ist eine eigene Oberfläche, getrennt vom öffentlichen K
 - Kontaktdaten mit Schnellaktionen (anrufen, E-Mail schreiben)
 - Statusverlauf und Notizen
 - Hinweis, ob der Kunde bereits Bestandskunde ist
-- Benachrichtigungsstatus (wann und wie wurde der AG informiert)
+- Benachrichtigungsstatus (wann und über welchen Kanal wurden die Benutzer informiert)
 
 ### Vorsortierung nach Interesse
 Der AG möchte erkennen, welche Kunden wirklich Interesse haben. Das System kennzeichnet jeden Lead mit einer Priorität (hoch, mittel, niedrig) anhand nachvollziehbarer Merkmale, zum Beispiel:
@@ -126,13 +127,13 @@ Die Priorität ist nur ein Vorschlag; der AG kann sie jederzeit ändern. Die Mer
 ### Bestandskunden
 Das System prüft beim Eingang eines Leads, ob der Kunde bereits in der Firmendatenbank des AG vorkommt (Abgleich z. B. über E-Mail, Name und Adresse). Ein Treffer wird in Liste und Detailansicht angezeigt. Der Zugriff auf die Firmendatenbank erfolgt nur lesend. Wie sicher ein Treffer ist, wird dem Benutzer angezeigt, da ein Abgleich nicht immer eindeutig ist.
 
-### Anforderungen Leadverwaltung
-Priorität nach MoSCoW: M = Must, S = Should, C = Could.
-
 ## Benachrichtigungssystem
 
+### Empfänger
+Bei jedem neuen Lead bekommt der AG eine E-Mail. Zusätzlich werden alle weiteren Benutzer mit aktivierter Benachrichtigung informiert.
+
 ### Inhalt einer Benachrichtigung
-Die Nachricht ist kurz und nennt nur das Nötige, zum Beispiel: „Neue Anfrage von Max Mustermann: Wärmepumpe, Kostenschätzung ca. 25.000 €.“ Die Details stehen in der Verwaltungskonsole und sind über einen Link erreichbar. Die E-Mail enthält mehr Details (Kontaktdaten, wichtigste Angaben, Kostenschätzung, Bestandskunden-Hinweis). Über Kanäle, die Dritte mitlesen könnten (SMS, Push auf dem Sperrbildschirm), werden möglichst wenige personenbezogene Daten übertragen.
+Die Benachrichtigung teilt nur mit, dass ein neuer Lead eingegangen ist, und enthält einen Link zum Lead, zum Beispiel: „Neue Anfrage eingegangen. Details: <Link zum Lead>“. Alle Details (Kontaktdaten, Angaben, Kostenschätzung, Bestandskunden-Hinweis) stehen in der Verwaltungsapp. Dadurch werden auch über Kanäle, die Dritte mitlesen könnten (SMS, Push auf dem Sperrbildschirm), keine personenbezogenen Daten übertragen.
 
 ### Kanäle
 Die technische Umsetzung ist noch offen. Zur Auswahl stehen:
