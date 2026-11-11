@@ -120,25 +120,25 @@ Bezug: Fachkonzept „Benachrichtigungssystem“
 | BEN-10 | Mindestens ein weiterer Kanal neben E-Mail (Push, SMS oder WhatsApp). | Ein konfigurierter zusätzlicher Kanal neben E-Mail kann eine Testbenachrichtigung erfolgreich zustellen. | C |
  
 # Nicht-funktionale Anforderungen
-Jede Anforderung hat ein Prüfkriterium, damit sie im Test nachgewiesen werden kann.
+Jede Anforderung hat Akzeptanzkriterien, anhand derer überprüft wird, ob sie erfüllt ist.
  
 ## 8. Benutzbarkeit
-| Nr. | Anforderung | Prüfkriterium | Prio |
-| --- | ----------- | ------------- | ---- |
+| Nr. | Anforderung | Akzeptanzkriterien | Prio |
+| --- | ----------- | ------------------- | ---- |
 | BENUTZ-01 | Die Web-App funktioniert auf Smartphone, Tablet und Laptop. | Alle Seiten sind bei 360 px, 768 px und 1366 px Breite ohne waagrechtes Scrollen bedienbar; getestet in aktuellem Chrome, Firefox, Safari und Edge. | M |
 | BENUTZ-02 | Der Konfigurator ist ein intuitiver Schritt-für-Schritt-Assistent. | 3 Testpersonen ohne Vorwissen schließen den Konfigurator ohne Hilfe ab; Ziel unter 10 Minuten. | M |
 | BENUTZ-03 | Alle Texte für Endkunden sind auf Deutsch und ohne Fachbegriffe bzw. mit Erklärung. | Review der Texte durch den AG. | S |
  
 ## 9. Leistung
-| Nr. | Anforderung | Prüfkriterium | Prio |
-| --- | ----------- | ------------- | ---- |
+| Nr. | Anforderung | Akzeptanzkriterien | Prio |
+| --- | ----------- | ------------------- | ---- |
 | LEIST-01 | Seitenwechsel innerhalb des Konfigurators laden schnell. | Wechsel zur nächsten Frage in unter 1 Sekunde (gemessen im Browser, normale Breitbandverbindung). | M |
 | LEIST-02 | Die Kostenschätzung wird ohne spürbare Verzögerung berechnet. | Berechnung inkl. Antwort des Backends in unter 2 Sekunden; PDF-Erstellung in unter 5 Sekunden. | M |
 | LEIST-03 | Die Benachrichtigung erreicht die Empfänger zeitnah. | E-Mail wird innerhalb von 1 Minute nach dem Absenden an die vorgesehenen Empfänger verschickt. | S |
  
 ## 10. Sicherheit und Datenschutz
-| Nr. | Anforderung | Prüfkriterium | Prio |
-| --- | ----------- | ------------- | ---- |
+| Nr. | Anforderung | Akzeptanzkriterien | Prio |
+| --- | ----------- | ------------------- | ---- |
 | SICH-01 | Personenbezogene Daten werden verschlüsselt in der Datenbank gespeichert. | Datenbank bzw. betroffene Spalten sind verschlüsselt; Klartext ist ohne Schlüssel nicht lesbar. | M |
 | SICH-02 | Die gesamte Kommunikation läuft verschlüsselt. | Nur HTTPS; Aufrufe über HTTP werden auf HTTPS umgeleitet. | M |
 | SICH-03 | Passwörter der Benutzer werden nur gehasht gespeichert; die Anmeldung erfolgt über JWT. | Code-Review; kein Passwort im Klartext in der Datenbank. | M |
@@ -147,8 +147,8 @@ Jede Anforderung hat ein Prüfkriterium, damit sie im Test nachgewiesen werden k
 | SICH-06 | Logdateien enthalten keine echten Kundendaten. | Review der Logs nach einem Testdurchlauf. | M |
  
 ## 11. Zuverlässigkeit und Wartbarkeit
-| Nr. | Anforderung | Prüfkriterium | Prio |
-| --- | ----------- | ------------- | ---- |
+| Nr. | Anforderung | Akzeptanzkriterien | Prio |
+| --- | ----------- | ------------------- | ---- |
 | WART-01 | Die Datenbank wird täglich automatisch gesichert. | Täglicher verschlüsselter SQL-Dump auf einem separaten Speichermedium des AG; Wiederherstellung einmal erfolgreich getestet. | M |
 | WART-02 | Fragen, Bausteine und Regeln sind ohne Änderung am Programmcode erweiterbar. | Eine neue Frage und ein neuer Baustein werden über die Verwaltungskonsole angelegt und funktionieren ohne neues Deployment. | S |
 | WART-03 | Der Code ist automatisch getestet. | Unit-, Integrations- und End-to-End-Tests laufen in der CI/CD-Pipeline bei jedem Merge auf main. | S |
