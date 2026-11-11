@@ -129,31 +129,7 @@ Das System prüft beim Eingang eines Leads, ob der Kunde bereits in der Firmenda
 ### Anforderungen Leadverwaltung
 Priorität nach MoSCoW: M = Must, S = Should, C = Could.
 
-| Nr. | Anforderung | Prio |
-| --- | ----------- | ---- |
-| LV-01 | Jede abgeschlossene Konfiguration wird automatisch als Lead mit allen Antworten, Bausteinen und Kostenschätzung gespeichert. | M |
-| LV-02 | Die Verwaltungskonsole ist nur nach Anmeldung erreichbar. | M |
-| LV-03 | Der Zugriff richtet sich nach der Rolle des Benutzers (Geschäftsführer, Mitarbeiter, Administrator). | M |
-| LV-04 | Benutzer sehen alle für sie freigegebenen Leads in einer Liste mit Sortierung, Filter und Suche. | M |
-| LV-05 | Jeder Lead hat einen Status, der manuell geändert werden kann; Änderungen werden protokolliert. | M |
-| LV-06 | Die Detailansicht zeigt alle Angaben des Kunden, die Bausteine und das PDF. | M |
-| LV-07 | Leads können einem Mitarbeiter zugewiesen werden. | S |
-| LV-08 | Mitarbeiter können Notizen zu einem Lead erfassen. | S |
-| LV-09 | Das System schlägt für jeden Lead eine Priorität vor; der AG kann sie ändern. | S |
-| LV-10 | Das System zeigt an, ob der Kunde bereits Bestandskunde ist. | S |
-| LV-11 | Beim Status „Verloren“ kann ein Grund erfasst werden. | C |
-| LV-12 | Einfache Auswertung (Anzahl Leads, Anteil gewonnen/verloren) für den Geschäftsführer. | C |
-| LV-13 | Leads lassen sich als Datei exportieren (z. B. CSV). | C |
-
 ## Benachrichtigungssystem
-
-### Auslöser
-| Ereignis | Empfänger | Prio |
-| -------- | --------- | ---- |
-| Neuer Lead ist eingegangen | alle Benutzer mit aktivierter Benachrichtigung | M |
-| Lead mit hoher Priorität (z. B. kurzfristiger Umsetzungswunsch) | wie oben, mit Hinweis „dringend“ | S |
-| Angebot oder PDF konnte nicht erstellt werden | Administrator | S |
-| Lead ist länger als eine festgelegte Zeit unbearbeitet | zuständiger Mitarbeiter oder Geschäftsführer | C |
 
 ### Inhalt einer Benachrichtigung
 Die Nachricht ist kurz und nennt nur das Nötige, zum Beispiel: „Neue Anfrage von Max Mustermann: Wärmepumpe, Kostenschätzung ca. 25.000 €.“ Die Details stehen in der Verwaltungskonsole und sind über einen Link erreichbar. Die E-Mail enthält mehr Details (Kontaktdaten, wichtigste Angaben, Kostenschätzung, Bestandskunden-Hinweis). Über Kanäle, die Dritte mitlesen könnten (SMS, Push auf dem Sperrbildschirm), werden möglichst wenige personenbezogene Daten übertragen.
@@ -179,17 +155,3 @@ Die technische Umsetzung ist noch offen. Zur Auswahl stehen:
 - Ein Lead wird immer gespeichert, auch wenn die Benachrichtigung scheitert.
 - Scheitert der Versand, versucht das System es erneut und protokolliert den Fehler.
 - Der Benachrichtigungsstatus (gesendet, fehlgeschlagen) ist im Lead sichtbar.
-
-### Anforderungen Benachrichtigungssystem
-| Nr. | Anforderung | Prio |
-| --- | ----------- | ---- |
-| BN-01 | Bei jedem neuen Lead wird der AG per E-Mail benachrichtigt (Kunde, Kontakt, wichtigste Angaben, Kostenschätzung, Link zum Lead). | M |
-| BN-02 | Die Benachrichtigung wird automatisch und ohne Verzögerung nach Abschluss der Konfiguration ausgelöst. | M |
-| BN-03 | Ein Lead wird gespeichert, auch wenn der Versand fehlschlägt; fehlgeschlagene Versuche werden wiederholt und protokolliert. | M |
-| BN-04 | Der Benachrichtigungsstatus ist in der Verwaltungskonsole beim Lead sichtbar. | S |
-| BN-05 | Dringende Leads werden in der Benachrichtigung hervorgehoben. | S |
-| BN-06 | Der Administrator wird informiert, wenn Angebot oder PDF nicht erstellt werden konnten. | S |
-| BN-07 | Das System ist so aufgebaut, dass weitere Kanäle (Push, SMS, WhatsApp) ohne Umbau ergänzt werden können. | S |
-| BN-08 | Benutzer wählen selbst, über welche Kanäle sie benachrichtigt werden. | C |
-| BN-09 | Erinnerung bei Leads, die zu lange unbearbeitet bleiben. | C |
-| BN-10 | Mindestens ein weiterer Kanal neben E-Mail (Push, SMS oder WhatsApp). | C |
