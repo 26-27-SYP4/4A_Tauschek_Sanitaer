@@ -1,0 +1,11 @@
+export * from './authors.service';
+import { AuthorsService } from './authors.service';
+export * from './books.service';
+import { BooksService } from './books.service';
+export * from './diagnostics.service';
+import { DiagnosticsService } from './diagnostics.service';
+export * from './loans.service';
+import { LoansService } from './loans.service';
+export * from './values.service';
+import { ValuesService } from './values.service';
+export const APIS = [AuthorsService, BooksService, DiagnosticsService, LoansService, ValuesService];

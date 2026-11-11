@@ -1,0 +1,117 @@
+ :host {
+   display: block;
+   min-height: 100%;
+   background: #f5f7f3;
+   color: #1d2a25;
+   padding: 10px;
+ }
+
+ $default-background: #edf7f1;
+ $default-color: #587267;
+
+ h1,
+ .h2,
+ .h3 {
+   margin-top: 0;
+ }
+
+ h1 {
+   font-size: 250%;
+   margin-bottom: 5px;
+   width: 100%;
+   text-align: center;
+ }
+
+ .h2 {
+   font-size: 150%;
+   font-weight: bold;
+   margin-bottom: 0;
+   margin-right: 5px;
+ }
+
+ .h3 {
+   font-size: 120%;
+   font-weight: bold;
+ }
+
+ .card {
+   padding: 8px;
+   margin-bottom: 5px;
+   border: 1px solid #dce4de;
+   border-radius: 14px;
+   background: white;
+   box-shadow: 0 4px 14px #203a2e0d;
+ }
+
+ .search-grid {
+   display: grid;
+   grid-template-columns: 35% 35% 12% 15%;
+   grid-template-rows: 15px 30px;
+   column-gap: 5px;
+
+   label {
+     font-size: 80%;
+   }
+ }
+
+ .input-grid {
+   display: grid;
+   grid-template-columns: 30% 30%;
+   grid-template-rows: 15px 30px;
+   column-gap: 5px;
+
+   label {
+     font-size: 80%;
+   }
+ }
+
+ table {
+   width: 100%;
+   border-collapse: collapse;
+ }
+
+ th,
+ td {
+   padding: 2px;
+   border-bottom: 1px solid #e4ebe6;
+   text-align: left;
+ }
+
+ th {
+   color: $default-color;
+   font-size: 80%;
+ }
+
+ tbody tr {
+   cursor: pointer;
+ }
+
+ tbody tr:hover,
+ tr.selected {
+   background: $default-background;
+   color: $default-color;
+ }
+
+ .loading-dialog {
+   background: $default-background;
+   color: $default-color;
+   padding: 5px;
+ }
+
+ .heading {
+   width: 100px;
+   font-weight: bold;
+   display: inline-block;
+ }
+
+ .centered {
+   text-align: center;
+ }
+
+ .error {
+   background-color: red;
+   color: white;
+   padding: 4px;
+   border-radius: 4px;
+   margin-top: 3px;
+ }
