@@ -16,7 +16,7 @@
 - Datenbank: SQL
 
 ## Konvention
-- Konventionen in Konventionen.md festgelegt
+- Konventionen in `Konventionen.md` festgelegt (Datei liegt im selben Ordner wie dieses Dokument).
 
 ## Persistierung
 - Datenspeicherung: Alle generierten Leads werden relational in der Kundendatenbank persistiert.

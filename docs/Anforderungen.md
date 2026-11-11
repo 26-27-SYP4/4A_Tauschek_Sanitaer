@@ -3,7 +3,7 @@ Version: 0.2.0
 Datum: 04.11.2026  
 Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix  
 Auftraggeber: Tauschek Sanitär Heizung GmbH  
-Grundlage: Fachliches_Konzept.md v0.3.0, Solution_Design.md v0.1.0, Entwurf „Heizungs-Konfigurator“ des AG (Oktober 2026)
+Grundlage: `Fachliches_Konzept.md` v0.3.0, `Solution_Design.md` v0.1.0, Entwurf „Heizungs-Konfigurator“ des AG (Oktober 2026). Beide genannten Markdown-Dateien liegen im selben Ordner wie dieses Dokument.
  
 AG = Auftraggeber, Endkunde = Kunde des AG
  

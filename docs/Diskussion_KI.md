@@ -9,7 +9,7 @@ Github Copilot
 - Code überprüfen, nicht einfach von der KI copy-pasten
 - Jeder verwendet KI für getrennte Aufgaben
 
-## Was in unserem AGENTS.md steht
+## Was in unserer `../AGENTS.md` steht
 Projektbeschreibung und Projektziel.
 Verwendeter Tech-Stack.
 Projektstruktur und Architektur.

@@ -1,9 +1,9 @@
 # Meeting 19.10.26
 
 # Datein
-- Anforderungen.md durchgehen
-- Fachliches_Konzept.md besprechen
-- Naechste_Schritte.md durchgehen
+- `../Anforderungen.md` durchgehen
+- `../Fachliches_Konzept.md` besprechen
+- `Naechste_Schritte.md` durchgehen (Datei im Projektbestand nicht vorhanden; Ablage bzw. Ersatz klären).
 
 # Fragen
 - Welche genaue Formel oder Logik steckt hinter der Preisberechnung für die Kostenschätzung?

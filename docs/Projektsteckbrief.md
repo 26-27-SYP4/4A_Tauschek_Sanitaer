@@ -4,7 +4,7 @@
 
 ### Wer ist beteiligt? 
 Schüler Felix Wiesner, Moritz Weißenhofer, David Geßwagner, Stefan Tauschek
-Firma/Ansprechpartner (inkl. Email und Telnr.) Tauschek Sanitär Heizung GmbH(15 Mitarbeiter), roland@tauschek.net, 0664 3126660
+Firma/Ansprechpartner (inkl. Email und Telnr.) Tauschek Sanitär Heizung GmbH(15 Mitarbeiter),
 ## Thema aus fachlicher Sicht
 ### Was macht der Kunde (sein Business)?
 Das Unternehmen plant, installiert und wartet Heizungen(Fokus des Projekts). Darüber hinaus noch Bäder, Klima- und Solarvorgänge sowie Lüftungs- und Staubsaugeranlagen.
