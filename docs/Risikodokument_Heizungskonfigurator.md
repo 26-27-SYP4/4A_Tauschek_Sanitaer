@@ -1,7 +1,7 @@
 # Risikodokument: Heizungskonfigurator
 
-Stand: 04.11.2026  
-Version: 0.1.0  
+Stand: 11.11.2026  
+Version: 0.2.0  
 Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix
 
 ## Allgemeines
@@ -13,8 +13,8 @@ Die drei größten Risiken sind die Anbindung der fremden Firmendatenbank, das f
 | Projekt | Heizungskonfigurator mit Kostenschätzung |
 | Auftraggeber (AG) | Tauschek Sanitär Heizung GmbH |
 | Projektteam | Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix |
-| Grundlage | Fachliches Konzept, Version 0.2.0 |
-| Version dieses Dokuments | 0.1.0 |
+| Grundlage | Fachliches Konzept, Version 0.4.0 |
+| Version dieses Dokuments | 0.2.0 |
 
 Ausgangslage des Teams: Erfahrung mit C# und Angular ist vorhanden. Neu für uns sind die Arbeit mit einer fremden Datenbank, die Zusammenarbeit über GitHub, das Erzeugen von PDFs, der automatische Mailversand und das Fachgebiet Heizungstechnik.
 
@@ -64,11 +64,11 @@ Jedes Risiko hat vorbeugende Maßnahmen, einen Plan B für den Fall, dass es ein
 
 ### R01 – Anbindung der fremden Firmendatenbank
 
-- **Ursache:** Aufbau, Datenbanksystem und Zugriffsweg der Firmendatenbank sind uns unbekannt. Leistung und Eignung der Bausteine stehen dort nicht drin, sie müssen ergänzt werden.
+- **Ursache:** Aufbau, Datenbanksystem und API-Schnittstelle der Firmendatenbank sind uns unbekannt. Leistung und Eignung der Bausteine stehen dort nicht drin, sie müssen ergänzt werden.
 - **Auswirkung:** Ohne Bausteine keine Kostenschätzung; die Kernfunktion fehlt.
-- **Vorbeugend:** Früh mit dem AG klären, welches System im Einsatz ist und ob ein Export (z. B. CSV) möglich ist. Nur lesend zugreifen, nie direkt in die Firmendatenbank schreiben. Eine eigene Import-Schicht bauen, die Felder der Firmendatenbank auf unsere Bausteine abbildet. Mit einem Beispielauszug entwickeln.
+- **Vorbeugend:** Früh mit dem AG klären, welches System im Einsatz ist und wie die API-Schnittstelle aussieht. Nur lesend zugreifen, nie direkt in die Firmendatenbank schreiben. Eine eigene Import-Schicht bauen, die die Daten der API auf unsere Bausteine abbildet. Mit Beispieldaten entwickeln.
 - **Plan B:** Bausteine vorerst manuell oder per CSV in die eigene Datenbank eintragen; der automatische Import folgt später.
-- **Frühwarnzeichen:** Kein Datenauszug bis zum ersten Meilenstein.
+- **Frühwarnzeichen:** Kein API-Zugang und keine Beispieldaten bis zum ersten Meilenstein.
 
 ### R02 – Fehlendes Fachwissen über Heizungen
 
@@ -112,17 +112,17 @@ Jedes Risiko hat vorbeugende Maßnahmen, einen Plan B für den Fall, dass es ein
 
 ### R07 – Falsche oder veraltete Preise
 
-- **Ursache:** Preise kommen per Import und können fehlen, falsch übernommen werden oder veralten.
+- **Ursache:** Preise kommen über die API aus der Firmendatenbank und können fehlen, falsch übernommen werden oder veralten.
 - **Auswirkung:** Endkunden erhalten unrealistische Erwartungen; das fällt auf den AG zurück.
-- **Vorbeugend:** Preise als Spanne ausgeben und das PDF klar als unverbindliche Schätzung kennzeichnen. Datum des letzten Imports im PDF angeben. Beim Import prüfen: fehlender Preis oder Preis 0 setzt den Baustein auf inaktiv.
+- **Vorbeugend:** Preise als Spanne ausgeben und das PDF klar als unverbindliche Schätzung kennzeichnen. Datum der letzten Preisübernahme im PDF angeben. Bei der Übernahme prüfen: fehlender Preis oder Preis 0 setzt den Baustein auf inaktiv.
 - **Plan B:** Betroffene Bausteine über das Merkmal „Aktiv“ sofort abschalten.
-- **Frühwarnzeichen:** Der Import meldet Bausteine ohne Preis oder mit starken Preissprüngen.
+- **Frühwarnzeichen:** Die Übernahme meldet Bausteine ohne Preis oder mit starken Preissprüngen.
 
 ### R08 – Datenschutz (DSGVO)
 
 - **Ursache:** Wir speichern Kontaktdaten und Angaben zum Haus, also personenbezogene Daten.
 - **Auswirkung:** Rechtliche Folgen und Imageschaden für den AG.
-- **Vorbeugend:** Einwilligung per nicht vorangekreuzter Checkbox (im Konzept vorgesehen). Datenschutztext vom AG liefern lassen, nicht selbst formulieren. Nur nötige Daten erfassen und Löschfristen mit dem AG festlegen. Daten nur verschlüsselt übertragen (HTTPS).
+- **Vorbeugend:** Einwilligung per nicht vorangekreuzter Checkbox (Absenden laut Anforderungen nur mit Zustimmung möglich). Datenschutztext vom AG liefern lassen, nicht selbst formulieren. Nur nötige Daten erfassen und Löschfristen mit dem AG festlegen. Daten nur verschlüsselt übertragen (HTTPS).
 - **Plan B:** Funktion erst online stellen, wenn der AG die Datenschutztexte freigegeben hat.
 - **Frühwarnzeichen:** Kurz vor dem Go-live fehlt noch die Datenschutzerklärung.
 
@@ -162,8 +162,8 @@ Jedes Risiko hat vorbeugende Maßnahmen, einen Plan B für den Fall, dass es ein
 
 - **Ursache:** Das Formular ist für alle im Internet erreichbar.
 - **Auswirkung:** Spam-Leads, Mail-Flut beim AG, im schlimmsten Fall Angriffe auf die Datenbank.
-- **Vorbeugend:** Alle Eingaben serverseitig prüfen. Nur parametrisierte Abfragen bzw. Entity Framework verwenden (Schutz vor SQL-Injection). Rate Limiting im ASP.NET-Core-Backend und ein Honeypot-Feld oder Captcha gegen Bots. Eingaben in Mails und PDFs escapen.
-- **Plan B:** Captcha nachrüsten, auffällige Leads herausfiltern.
+- **Vorbeugend:** Alle Eingaben serverseitig prüfen. Nur parametrisierte Abfragen bzw. Entity Framework verwenden (Schutz vor SQL-Injection). Rate Limiting im ASP.NET-Core-Backend (Must) und reCaptcha gegen Bots (Should), ergänzend ein Honeypot-Feld. Eingaben in Mails und PDFs escapen.
+- **Plan B:** Falls reCaptcha noch nicht umgesetzt ist, vorziehen; auffällige Leads herausfiltern.
 - **Frühwarnzeichen:** Viele Anfragen in kurzer Zeit oder sinnlose Eingaben.
 
 ### R14 – Ausfall eines Teammitglieds
@@ -208,3 +208,4 @@ Das Risikodokument ist ein lebendes Dokument und wird während des ganzen Projek
 | Version | Datum | Änderung |
 | --- | --- | --- |
 | 0.1.0 | 04.11.2026 | Erstfassung mit 15 Risiken |
+| 0.2.0 | 11.11.2026 | Grundlage auf Fachliches Konzept 0.4.0 aktualisiert; Anbindung der Firmendatenbank über API (R01, R07); reCaptcha als Should (R13); Verweis in R08 korrigiert |

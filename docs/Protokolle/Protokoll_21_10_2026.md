@@ -1,4 +1,4 @@
-Große Issues in kleinere teile runterbrechen, 1 Teil für eine Person
+Große Issues in kleinere Teile runterbrechen, 1 Teil für eine Person
 Anforderungen aus Fachkonzept beziehen mit KI
 Schritt für Schritt mit KI durchgehen
 Priorität 1 Abstimmung mit Kunden
@@ -7,17 +7,17 @@ Priorität 1 Abstimmung mit Kunden
 - 1a; Fragenkatalog => Projekteinschätzung bzw. nur Kriterien -> Lead
     - Fragen-Konfigurator
 - 1b; Bausteine (z.B. Wärmepumpe)
-- Geschäftsprozess(liegt darüber) als eigenes Issue
+- Geschäftsprozess (liegt darüber) als eigenes Issue
 - 2; Leadverwaltung
-- Benachrichtungssystem => <span style="color: red;">verschiedene Umsetung(Mail, WhatsApp, SMS, Push-Benachrichtung von Progressive-WebApps)</span>
+- Benachrichtigungssystem => <span style="color: red;">verschiedene Umsetzung (Mail, WhatsApp, SMS, Push-Benachrichtigung von Progressive Web Apps)</span>
 - 
 
 # Heizungskonfigurator Fragenkatalog
 - sich etwas überlegen für die Auswahl "sonstiges"
-- angeben ob es schon eine Heizung gibt(Neubau, Sanierung mit neuer Heizung, Sanierung ohne Heizung)
-- Bei thermischen Zustand option ich weiß nicht
+- angeben ob es schon eine Heizung gibt (Neubau, Sanierung mit neuer Heizung, Sanierung ohne Heizung)
+- Beim thermischen Zustand Option „Ich weiß nicht“
 - Vorlauftemperatur weiß nicht jeder
 - Detailfragesystem
 
 # Bausteine
-- Führen kombiniert mit den Kriterien zum Angebot(standardisiert)
+- Führen kombiniert mit den Kriterien zum Angebot (standardisiert)

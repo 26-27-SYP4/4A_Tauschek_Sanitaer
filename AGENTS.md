@@ -2,12 +2,18 @@
 
 ## Projekt
 
-Heizungskonfigurator mit Kostenschätzung, aufgeteilt auf zwei Git-Repositories:
+Heizungskonfigurator mit Kostenschätzung in einem Git-Repository mit zwei Anwendungen:
 
-- `heizungskonfigurator`: öffentliche Kundenanwendung ohne Kundenkonto
-- `verwaltungsapp`: interne Leadverwaltung für angemeldete Benutzer
+- Heizungskonfigurator: öffentliche Kundenanwendung ohne Kundenkonto
+- Verwaltungsapp: interne Leadverwaltung für angemeldete Benutzer
 
-Jedes Repo enthält sein Angular/TypeScript-Frontend und sein C#/.NET-Backend. Datenbankschema und EF-Core-Migrationen liegen im Backend des Repos, das die jeweiligen Daten fachlich verwaltet. Was nur für dieses Repo gilt, steht unter „Repo-spezifisch“ am Ende.
+Jede Anwendung hat ihr eigenes Angular/TypeScript-Frontend und ihr eigenes C#/.NET-Backend. Eine spätere Aufteilung auf zwei Repositories ist möglich, aber nicht ohne Freigabe vorzunehmen. Was nur für eine Anwendung gilt, steht unter „Anwendungsspezifisch“ am Ende.
+
+## Datenhoheit
+
+- Leads: speichert und verwaltet das Backend der Verwaltungsapp. Der Heizungskonfigurator übergibt neue Leads an dieses Backend.
+- Bausteine inklusive Artikel und Preise: speichert das Backend des Heizungskonfigurators. Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank des AG übernommen.
+- Datenbankschema und EF-Core-Migrationen liegen im Backend, das die jeweiligen Daten speichert.
 
 ## Befehle und Struktur
 
@@ -16,9 +22,10 @@ Noch nicht festgelegt. Keine Build-, Test- oder Setup-Befehle raten und keine Pr
 ## Dokumente
 
 - `docs/Konventionen.md`: verbindlicher Coding-Stil
+- `docs/Glossar.md`: verbindliche Begriffe (z. B. LeadDB, KundenDB)
 - `docs/Anforderungen.md`: priorisierte Anforderungen und Prüfkriterien
 - `docs/Fachliches_Konzept.md`: fachliche Abläufe
-- `docs/Stakeholeranalyse.md`: Stakeholder und Abstimmungsbedarf
+- `docs/Stakeholderanalyse.md`: Stakeholder und Abstimmungsbedarf
 
 Vor Änderungen die relevanten Dokumente und den vorhandenen Code lesen. Bei Widersprüchen zwischen Dokumenten, Code und Auftrag nachfragen.
 
@@ -37,14 +44,14 @@ Vor Änderungen die relevanten Dokumente und den vorhandenen Code lesen. Bei Wid
 ## Technische Regeln
 
 - Datenbankzugriff ausschließlich über Entity Framework Core. Keine weiteren ORMs, kein direktes SQL.
-- Leads, Bausteine und Preise werden jeweils von genau einem Backend verwaltet. Nie aus beiden Backends dieselben Tabellen schreiben.
+- Daten werden nur von dem Backend geschrieben, das sie laut „Datenhoheit“ speichert. Nie aus beiden Backends dieselben Tabellen schreiben; die andere Anwendung greift über die API des zuständigen Backends zu.
 - Keine Frameworks, Abhängigkeiten, Projektstruktur, gemeinsamen Pakete oder neuen Repositories ohne Freigabe.
 - Bestehende Tests nicht löschen oder abschwächen, um sie zum Bestehen zu bringen.
 
 ## Fachliche Leitplanken
 
 - Keine Wärmebedarfsformeln, Grenzwerte, Preise, Standardwerte, Produktregeln oder Prioritätsgewichtungen erfinden. Fehlen freigegebene Angaben, nachfragen.
-- Artikel und Preise stammen aus der Firmendatenbank; Zugriff darauf nur lesend.
+- Artikel und Preise stammen aus der Firmendatenbank und werden über eine API-Schnittstelle übernommen; Zugriff darauf nur lesend.
 - Antworten eines Leads bleiben dem Fragenstand zum Anfragezeitpunkt zugeordnet.
 - Details zu Abläufen stehen in `docs/Fachliches_Konzept.md`, nicht hier.
 
@@ -64,24 +71,26 @@ Ohne Freigabe nichts festlegen oder konfigurieren zu:
 - Datenbankverschlüsselung, Passwort-Hashing-Verfahren
 - Authentifizierung: JWT laut Anforderungen, aber Benutzer, Rollen und Zeitpunkt offen
 - Backupverfahren, Aufbewahrung und Löschung von Leads
-- Konkrete Fragen, Standardwerte, Wärmebedarfs- und Preisregeln, Importdetails
+- Konkrete Fragen, Standardwerte, Wärmebedarfs- und Preisregeln, Details der API-Anbindung an die Firmendatenbank
+- In welchem Backend die Fragen des Fragenkatalogs gespeichert werden
 - Energieberatung (in den Anforderungen erwähnt, fachlich nicht ausgearbeitet)
 
-## Repo-spezifisch
+## Anwendungsspezifisch
 
-<!-- In jedem Repo nur den zutreffenden Block behalten. Befehle und Struktur oben ergänzen, sobald festgelegt. -->
+<!-- Befehle und Struktur oben ergänzen, sobald festgelegt. -->
 
-### heizungskonfigurator (Kundenanwendung)
+### Heizungskonfigurator (Kundenanwendung)
 
-- Öffentlich erreichbar, kein Kundenlogin. reCAPTCHA und Rate-Limiting schützen den Konfigurator.
+- Öffentlich erreichbar, kein Kundenlogin. Rate-Limiting schützt den Konfigurator (Must); reCAPTCHA ist vorgesehen (Should).
 - Bedingte Fragen zu bestehender Heizung, Gebäude, Warmwasser und gewünschtem Heizsystem. Fragen, Antwortoptionen und Bedingungen sind konfigurierbar.
 - „Ich weiß nicht“ nur mit freigegebenem Standardwert behandeln; Wert und Annahme in Lead und PDF festhalten.
 - Wärmebedarf nach freigegebenen Regeln aus dem Verbrauch, ersatzweise aus Fläche und Gebäudezustand. Preise nur als unverbindliche Spanne.
-- Ein Angebot enthält genau einen passenden, aktiven Wärmeerzeuger plus regelbasierte Zusatzbausteine. Kein passender Baustein: kein automatisches Angebot, Lead für persönliche Beratung markieren. Bei bedingter Eignung Hinweis auf Prüfung vor Ort.
-- Nach dem Absenden: Lead mit Antworten, Bausteinen und Schätzung speichern, PDF mit Kostenspanne, Bausteinen, Annahmen und Hinweisen erstellen, Auftraggeber per E-Mail benachrichtigen. Ein fehlgeschlagener Versand darf die Leadspeicherung nicht verhindern.
+- Ein Angebot enthält genau einen passenden, aktiven Wärmeerzeuger plus regelbasierte Zusatzbausteine. Kein passender Baustein: kein automatisches Angebot, Lead für persönliche Beratung markieren. Unlogische oder technisch ungünstige Kombinationen schon bei der Eingabe erkennen und den Endkunden darauf hinweisen; bei bedingter Eignung zusätzlich Hinweis „Prüfung vor Ort nötig“ speichern und ins PDF übernehmen.
+- Nach dem Absenden: Lead mit Antworten, Bausteinen und Schätzung an das Backend der Verwaltungsapp übergeben, PDF mit Kostenspanne, Bausteinen, Annahmen und Hinweisen erstellen, den AG und alle weiteren Benutzer mit aktivierter Benachrichtigung per E-Mail über den neuen Lead informieren (nur Hinweis und Link, Details stehen in der Verwaltungsapp). Ein fehlgeschlagener Versand darf die Leadspeicherung nicht verhindern.
 - Datenschutz-Zustimmung mit Zeitpunkt speichern.
 
-### verwaltungsapp (Leadverwaltung)
+### Verwaltungsapp (Leadverwaltung)
 
+- Speichert die Leads (siehe „Datenhoheit“).
 - Nur für angemeldete Benutzer. Rollen und Berechtigungen serverseitig durchsetzen.
 - Authentifizierungsdetails sind offen (siehe oben) und vor jeder Arbeit daran zu klären.
