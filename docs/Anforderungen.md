@@ -17,14 +17,14 @@ Bezug: Fachkonzept „Soll-Zustand“, „Fragenkatalog“
  
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| KON-01 | Der Konfigurator ist ohne Anmeldung als eigener Abschnitt auf der Website des AG erreichbar. | Die Seite ist ohne Login über die Website des AG aufrufbar. | 2 |
 | KON-02 | Der Endkunde gibt die Angaben zu bestehender Heizung, Gebäude, Warmwasser und gewünschtem Heizsystem laut Fragenkatalog ein. | Alle im Fragenkatalog vorgesehenen Angaben können eingegeben und beim Absenden übernommen werden. | 1 |
+| KON-06 | Eingaben werden geprüft: Pflichtfelder, gültige Zahlenbereiche (z. B. Fläche, Personen), gültige E-Mail-Adresse. | Leere Pflichtfelder, Werte außerhalb der festgelegten Zahlenbereiche und ungültige E-Mail-Adressen werden erkannt und verständlich markiert. | 1 |
+| KON-08 | Am Ende gibt der Endkunde seine Kontaktdaten ein; Absenden ist nur mit Zustimmung zu den Datenschutzbestimmungen möglich. | Ohne Kontaktdaten oder Datenschutz-Zustimmung lässt sich die Konfiguration nicht absenden; mit Zustimmung ist das Absenden möglich. | 1 |
+| KON-01 | Der Konfigurator ist ohne Anmeldung als eigener Abschnitt auf der Website des AG erreichbar. | Die Seite ist ohne Login über die Website des AG aufrufbar. | 2 |
 | KON-03 | Der Konfigurator führt Schritt für Schritt durch die Fragen (eine Frage pro Seite, Fortschrittsanzeige, „Zurück“ und „Weiter“). | Fragen erscheinen einzeln; Fortschritt sowie „Zurück“ und „Weiter“ funktionieren in einem vollständigen Testdurchlauf. | 2 |
 | KON-04 | Folgefragen werden abhängig von vorherigen Antworten ein- oder ausgeblendet (z. B. Wärmequelle nur bei Wärmepumpe). | Für definierte Testantworten werden ausschließlich die jeweils passenden Folgefragen angezeigt. | 2 |
 | KON-05 | Bei Fragen, die Endkunden oft nicht beantworten können, gibt es die Antwort „Ich weiß nicht“. | Bei allen dafür vorgesehenen Fragen ist „Ich weiß nicht“ auswählbar und die Konfiguration kann fortgesetzt werden. | 2 |
-| KON-06 | Eingaben werden geprüft: Pflichtfelder, gültige Zahlenbereiche (z. B. Fläche, Personen), gültige E-Mail-Adresse. | Leere Pflichtfelder, Werte außerhalb der festgelegten Zahlenbereiche und ungültige E-Mail-Adressen werden erkannt und verständlich markiert. | 1 |
 | KON-07 | Das System erkennt unlogische oder technisch ungünstige Kombinationen und weist den Endkunden darauf hin (z. B. Kühlen mit Heizkörpern, Wärmepumpe bei hoher Vorlauftemperatur). | Für die festgelegten unlogischen bzw. ungünstigen Kombinationen erscheint jeweils ein passender Hinweis. | 3 |
-| KON-08 | Am Ende gibt der Endkunde seine Kontaktdaten ein; Absenden ist nur mit Zustimmung zu den Datenschutzbestimmungen möglich. | Ohne Kontaktdaten oder Datenschutz-Zustimmung lässt sich die Konfiguration nicht absenden; mit Zustimmung ist das Absenden möglich. | 1 |
 | KON-09 | Der Konfigurator begrenzt die Anzahl der Anfragen pro Zeit (Rate-Limiting), um automatisierte Anfragen einzuschränken. | Nach Überschreiten des konfigurierten Anfrage-Limits innerhalb des festgelegten Zeitraums werden weitere Anfragen blockiert. | 3 |
 | KON-10 | Der Konfigurator verwendet reCaptcha als zusätzlichen Schutz gegen automatisierte Anfragen. | Eine Anfrage kann erst nach erfolgreicher reCaptcha-Prüfung abgesendet werden; eine fehlgeschlagene Prüfung wird abgewiesen. | 4 |
 | KON-11 | Auswahlfragen werden als Kacheln mit kurzem Erklärungstext und Hinweisen dargestellt. | Jede Auswahlfrage wird als Kachel mit Erklärungstext und gegebenenfalls Hinweis dargestellt. | 4 |
@@ -39,8 +39,8 @@ Bezug: Fachkonzept „Fragenkatalog“ (Erweiterbarkeit der Fragen)
 | --- | ----------- | ------------------- | ---- |
 | FRG-01 | Fragen, Antwortoptionen und Einblendbedingungen werden in der Datenbank gespeichert, nicht im Programmcode. | Fragen, Antwortoptionen und Einblendbedingungen können in der Datenbank gefunden und ohne Codeänderung angepasst werden. | 1 |
 | FRG-02 | Ein Lead speichert Fragen und Antworten so, wie sie zum Zeitpunkt der Anfrage waren; spätere Änderungen an Fragen verändern alte Leads nicht. | Ein bereits gespeicherter Lead zeigt nach Änderung einer Frage weiterhin den ursprünglichen Fragetext und die damalige Antwort. | 2 |
-| FRG-03 | Der Administrator kann Fragen in der Verwaltungskonsole anlegen, ändern, sortieren und deaktivieren, ohne Programmierung. | Ein Administrator kann eine Frage anlegen, bearbeiten, sortieren und deaktivieren; die Änderungen werden im Konfigurator übernommen. | 4 |
 | FRG-04 | Der Administrator kann Einblendbedingungen, Hilfetexte und Standardwerte für „Ich weiß nicht“ festlegen. | Ein Administrator kann Einblendbedingungen, Hilfetexte und Standardwerte speichern; diese werden im nächsten Konfigurator-Durchlauf angewendet. | 3 |
+| FRG-03 | Der Administrator kann Fragen in der Verwaltungskonsole anlegen, ändern, sortieren und deaktivieren, ohne Programmierung. | Ein Administrator kann eine Frage anlegen, bearbeiten, sortieren und deaktivieren; die Änderungen werden im Konfigurator übernommen. | 4 |
  
 ## 3. Bausteine und Kostenschätzung
 Bezug: Fachkonzept „Bausteine“
@@ -51,13 +51,13 @@ Bezug: Fachkonzept „Bausteine“
 | BAU-02 | Das System wählt genau einen Wärmeerzeuger der gewünschten Technologie, dessen Eignungsbereich zum Wärmebedarf passt. | Für einen Testfall mit passendem Baustein wird genau ein Wärmeerzeuger der gewünschten Technologie und mit passendem Eignungsbereich ausgewählt. | 1 |
 | BAU-03 | Das System ergänzt Zusatzbausteine (Speicher, Zubehör, Dienstleistungen) über Regeln der Form „Bedingung → Baustein, Menge“. | Für jede definierte Regel werden der zugehörige Zusatzbaustein und die festgelegte Menge in die Auswahl aufgenommen. | 1 |
 | BAU-04 | Das System berechnet auf Basis der Bausteine automatisch eine Kostenspanne (von–bis). | Die angezeigte Unter- und Obergrenze entspricht der Summe der Preis-Unter- bzw. Obergrenzen der ausgewählten Bausteine. | 1 |
+| BAU-08 | Ein Baustein hat die Merkmale Bezeichnung, Kategorie, Technologie, Heizleistung, Eignung, Hersteller/Modell, Preis, Artikelnummer und Aktiv. | Für jeden Baustein können alle neun genannten Merkmale gespeichert und wieder ausgelesen werden. | 1 |
 | BAU-05 | Bei „Ich weiß nicht“ verwendet das System einen Standardwert und speichert ihn als Annahme. | Bei Auswahl von „Ich weiß nicht“ wird der konfigurierte Standardwert verwendet und als Annahme gespeichert. | 2 |
 | BAU-06 | Gibt es keinen passenden Baustein (z. B. sehr hoher Wärmebedarf, Sonderwunsch), wird kein automatisches Angebot erstellt und der Lead für persönliche Beratung markiert. | Bei einem Testfall ohne passenden Baustein wird keine automatische Kostenschätzung erstellt und der Lead als beratungsbedürftig markiert. | 2 |
 | BAU-07 | Bei technisch nur bedingt passenden Kombinationen wird ein Hinweis „Prüfung vor Ort nötig“ gespeichert. | Bei einer als bedingt passend definierten Kombination wird der Hinweis „Prüfung vor Ort nötig“ gespeichert und ausgegeben. | 2 |
-| BAU-08 | Ein Baustein hat die Merkmale Bezeichnung, Kategorie, Technologie, Heizleistung, Eignung, Hersteller/Modell, Preis, Artikelnummer und Aktiv. | Für jeden Baustein können alle neun genannten Merkmale gespeichert und wieder ausgelesen werden. | 1 |
+| BAU-11 | Bausteine können aktiviert und deaktiviert werden; deaktivierte Bausteine werden nicht ausgewählt. | Ein deaktivierter Baustein wird bei einem Testlauf auch dann nicht ausgewählt, wenn seine übrigen Kriterien passen. | 3 |
 | BAU-09 | Artikel und Preise werden regelmäßig über eine API-Schnittstelle aus der Firmendatenbank des AG übernommen; der Zugriff auf die Firmendatenbank ist nur lesend. | Die API-Schnittstelle übernimmt Artikel und Preise aus der Firmendatenbank; Schreiboperationen auf dieser Datenbank finden nicht statt. | 4 |
 | BAU-10 | Der Administrator pflegt Leistung, Eignung und Regeln der Bausteine in der Verwaltungskonsole, ohne Programmierung. | Ein Administrator kann Leistung, Eignung und Regeln ändern; die nächste Berechnung berücksichtigt die Änderungen ohne Codeänderung. | 4 |
-| BAU-11 | Bausteine können aktiviert und deaktiviert werden; deaktivierte Bausteine werden nicht ausgewählt. | Ein deaktivierter Baustein wird bei einem Testlauf auch dann nicht ausgewählt, wenn seine übrigen Kriterien passen. | 3 |
  
 ## 4. PDF mit Kostenschätzung
 Bezug: Fachkonzept „Soll-Zustand“, „Sonderfälle“
@@ -68,9 +68,9 @@ Bezug: Fachkonzept „Soll-Zustand“, „Sonderfälle“
 | PDF-02 | Das PDF weist die Kostenschätzung deutlich als unverbindlichen Richtwert aus, nicht als verbindliche Feinplanung. | Im PDF ist die Kostenschätzung eindeutig als unverbindlicher Richtwert und nicht als verbindliche Feinplanung bezeichnet. | 2 |
 | PDF-03 | Das PDF enthält alle Annahmen (Standardwerte bei „Ich weiß nicht“) und Hinweise (z. B. „Prüfung vor Ort nötig“). | Alle verwendeten Standardannahmen und alle zutreffenden Hinweise sind im PDF angeführt. | 2 |
 | PDF-04 | Der Endkunde kann das PDF nach dem Absenden sofort herunterladen. | Der Download des erzeugten PDFs ist unmittelbar nach dem Absenden möglich und die Datei lässt sich öffnen. | 2 |
+| PDF-07 | Kann kein automatisches Angebot erstellt werden, bekommt der Endkunde statt des PDFs eine Bestätigung, dass sich der AG persönlich meldet. | Bei einem Testfall ohne automatisches Angebot wird eine Bestätigung angezeigt, die eine persönliche Rückmeldung des AG ankündigt. | 3 |
 | PDF-05 | Das PDF enthält Logo und Kontaktdaten des AG. | Das PDF zeigt das Logo sowie die festgelegten Kontaktdaten des AG. | 4 |
 | PDF-06 | Der Endkunde bekommt das PDF zusätzlich per E-Mail. | Nach dem Absenden wird das PDF an die angegebene E-Mail-Adresse versendet. | 4 |
-| PDF-07 | Kann kein automatisches Angebot erstellt werden, bekommt der Endkunde statt des PDFs eine Bestätigung, dass sich der AG persönlich meldet. | Bei einem Testfall ohne automatisches Angebot wird eine Bestätigung angezeigt, die eine persönliche Rückmeldung des AG ankündigt. | 3 |
  
 ## 5. Energieberatung
 Bezug: Meeting 19.10.2026 („automatische Energieberatung mit aktuellen Tagespreisen“). **Noch nicht im Fachkonzept beschrieben**, Kapitel muss ergänzt werden.
@@ -108,12 +108,12 @@ Bezug: Fachkonzept „Benachrichtigungssystem“
  
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
+| BEN-03 | Ein Lead wird gespeichert, auch wenn der Versand fehlschlägt; fehlgeschlagene Versuche werden wiederholt und protokolliert. | Bei simuliertem E-Mail-Ausfall bleibt der Lead gespeichert; Versandversuche werden erneut ausgeführt und der Fehler wird protokolliert. | 2 |
 | BEN-01 | Bei jedem neuen Lead werden alle Benutzer mit aktivierter Benachrichtigung per E-Mail benachrichtigt (Kunde, Kontakt, wichtigste Angaben, Kostenschätzung, Link zum Lead). | Bei einem neuen Lead erhalten alle Benutzer mit aktivierter Benachrichtigung eine E-Mail mit Kunde, Kontaktdaten, wichtigsten Angaben, Kostenschätzung und Link zum Lead. | 3 |
 | BEN-02 | Die Benachrichtigung wird automatisch und ohne Verzögerung nach Abschluss der Konfiguration ausgelöst. | Die Benachrichtigung wird nach Abschluss der Konfiguration automatisch ausgelöst; der Versand startet ohne manuelle Aktion. | 3 |
-| BEN-03 | Ein Lead wird gespeichert, auch wenn der Versand fehlschlägt; fehlgeschlagene Versuche werden wiederholt und protokolliert. | Bei simuliertem E-Mail-Ausfall bleibt der Lead gespeichert; Versandversuche werden erneut ausgeführt und der Fehler wird protokolliert. | 2 |
+| BEN-06 | Der Administrator wird informiert, wenn Angebot oder PDF nicht erstellt werden konnten. | Wenn die PDF- oder Angebotserstellung fehlschlägt, erhält der Administrator eine entsprechende Meldung. | 3 |
 | BEN-04 | Der Benachrichtigungsstatus ist in der Verwaltungskonsole beim Lead sichtbar. | In der Leadansicht ist erkennbar, ob die Benachrichtigung gesendet wurde oder fehlgeschlagen ist. | 4 |
 | BEN-05 | Dringende Leads werden in der Benachrichtigung hervorgehoben. | Bei einem Lead mit hoher Priorität enthält die Benachrichtigung eine eindeutige Dringlichkeitskennzeichnung. | 4 |
-| BEN-06 | Der Administrator wird informiert, wenn Angebot oder PDF nicht erstellt werden konnten. | Wenn die PDF- oder Angebotserstellung fehlschlägt, erhält der Administrator eine entsprechende Meldung. | 3 |
 | BEN-07 | Das System ist so aufgebaut, dass weitere Kanäle (Push, SMS, WhatsApp) ohne Umbau ergänzt werden können. | Ein zusätzlicher Benachrichtigungskanal kann über eine klar abgegrenzte Schnittstelle ergänzt werden, ohne bestehende Leadabläufe umzubauen. | 5 |
 | BEN-08 | Benutzer wählen selbst, über welche Kanäle sie benachrichtigt werden. | Ein Benutzer kann seine gewünschten Ereignisse und Benachrichtigungskanäle speichern; nur diese Einstellungen werden berücksichtigt. | 5 |
 | BEN-09 | Erinnerung bei Leads, die zu lange unbearbeitet bleiben. | Für einen länger unbearbeiteten Lead wird nach Ablauf der konfigurierten Zeit eine Erinnerung an den festgelegten Empfänger ausgelöst. | 5 |
@@ -132,8 +132,8 @@ Jede Anforderung hat Akzeptanzkriterien, anhand derer überprüft wird, ob sie e
 ## 9. Leistung
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| LEIST-01 | Seitenwechsel innerhalb des Konfigurators laden schnell. | Wechsel zur nächsten Frage in unter 1 Sekunde (gemessen im Browser, normale Breitbandverbindung). | 3 |
 | LEIST-02 | Die Kostenschätzung wird ohne spürbare Verzögerung berechnet. | Berechnung inkl. Antwort des Backends in unter 2 Sekunden; PDF-Erstellung in unter 5 Sekunden. | 2 |
+| LEIST-01 | Seitenwechsel innerhalb des Konfigurators laden schnell. | Wechsel zur nächsten Frage in unter 1 Sekunde (gemessen im Browser, normale Breitbandverbindung). | 3 |
 | LEIST-03 | Die Benachrichtigung erreicht die Empfänger zeitnah. | E-Mail wird innerhalb von 1 Minute nach dem Absenden an die vorgesehenen Empfänger verschickt. | 4 |
  
 ## 10. Sicherheit und Datenschutz
@@ -150,5 +150,5 @@ Jede Anforderung hat Akzeptanzkriterien, anhand derer überprüft wird, ob sie e
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
 | WART-01 | Die Datenbank wird täglich automatisch gesichert. | Täglicher verschlüsselter SQL-Dump auf einem separaten Speichermedium des AG; Wiederherstellung einmal erfolgreich getestet. | 2 |
-| WART-02 | Fragen, Bausteine und Regeln sind ohne Änderung am Programmcode erweiterbar. | Eine neue Frage und ein neuer Baustein werden über die Verwaltungskonsole angelegt und funktionieren ohne neues Deployment. | 4 |
 | WART-03 | Der Code ist automatisch getestet. | Unit-, Integrations- und End-to-End-Tests laufen in der CI/CD-Pipeline bei jedem Merge auf main. | 3 |
+| WART-02 | Fragen, Bausteine und Regeln sind ohne Änderung am Programmcode erweiterbar. | Eine neue Frage und ein neuer Baustein werden über die Verwaltungskonsole angelegt und funktionieren ohne neues Deployment. | 4 |
