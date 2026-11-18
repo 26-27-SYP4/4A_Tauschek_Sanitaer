@@ -9,7 +9,7 @@ Heizungskonfigurator mit Kostenschätzung in einem Git-Repository mit zwei Anwen
 
 Jede Anwendung hat ihr eigenes Angular/TypeScript-Frontend und ihr eigenes C#/.NET-Backend. Eine spätere Aufteilung auf zwei Repositories ist möglich, aber nicht ohne Freigabe vorzunehmen. Was nur für eine Anwendung gilt, steht unter „Anwendungsspezifisch“ am Ende.
 
-## Datenhoheit
+## Datenspeicherung
 
 - Leads: speichert und verwaltet das Backend der Verwaltungsapp. Der Heizungskonfigurator übergibt neue Leads an dieses Backend.
 - Bausteine inklusive Artikel und Preise: speichert das Backend des Heizungskonfigurators. Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank des AG übernommen.
@@ -45,7 +45,7 @@ Vor Änderungen die relevanten Dokumente und den vorhandenen Code lesen. Bei Wid
 ## Technische Regeln
 
 - Datenbankzugriff ausschließlich über Entity Framework Core. Keine weiteren ORMs, kein direktes SQL.
-- Daten werden nur von dem Backend geschrieben, das sie laut „Datenhoheit“ speichert. Nie aus beiden Backends dieselben Tabellen schreiben; die andere Anwendung greift über die API des zuständigen Backends zu.
+- Daten werden nur von dem Backend geschrieben, das sie laut „Datenspeicherung“ speichert. Nie aus beiden Backends dieselben Tabellen schreiben; die andere Anwendung greift über die API des zuständigen Backends zu.
 - Keine Frameworks, Abhängigkeiten, Projektstruktur, gemeinsamen Pakete oder neuen Repositories ohne Freigabe.
 - Bestehende Tests nicht löschen oder abschwächen, um sie zum Bestehen zu bringen.
 
@@ -54,7 +54,7 @@ Vor Änderungen die relevanten Dokumente und den vorhandenen Code lesen. Bei Wid
 - Keine Wärmebedarfsformeln, Grenzwerte, Preise, Standardwerte, Produktregeln oder Prioritätsgewichtungen erfinden. Fehlen freigegebene Angaben, nachfragen.
 - Artikel und Preise stammen aus der Firmendatenbank und werden über eine API-Schnittstelle übernommen; Zugriff darauf nur lesend.
 - Antworten eines Leads bleiben dem Fragenstand zum Anfragezeitpunkt zugeordnet: Der Lead speichert Versionsnummer, Fragetexte, Antworten und die Begründung (zutreffende Regeln) selbst. Regeln neuer Versionen werden nie auf alte Leads angewendet.
-- Veröffentlichte Versionen des Fragenkatalogs sind unveränderlich. Der Key einer Frage ändert sich nie; Fragen werden deaktiviert, nicht gelöscht.
+- Veröffentlichte Versionen des Fragenkatalogs sind unveränderlich. Der Key ist die Variable, in der eine Antwort gespeichert wird; Regeln beziehen sich auf Keys. Pro Version befüllt jeder Key genau eine Frage.
 - Details zu Abläufen stehen in `docs/Fachliches_Konzept.md`, nicht hier.
 
 ## Sicherheit und Datenschutz
@@ -92,7 +92,7 @@ Ohne Freigabe nichts festlegen oder konfigurieren zu:
 
 ### Verwaltungsapp (Leadverwaltung)
 
-- Speichert die Leads (siehe „Datenhoheit“).
+- Speichert die Leads (siehe „Datenspeicherung“).
 - Nur für angemeldete Benutzer. Rollen und Berechtigungen serverseitig durchsetzen.
-- Fragen und Regeln bearbeiten und veröffentlichen dürfen Administrator und Geschäftsführer; Mitarbeiter nur lesen. Gespeichert werden sie im Backend des Heizungskonfigurators (siehe „Datenhoheit“).
+- Fragen und Regeln bearbeiten und veröffentlichen dürfen Administrator und Geschäftsführer; Mitarbeiter nur lesen. Gespeichert werden sie im Backend des Heizungskonfigurators (siehe „Datenspeicherung“).
 - Authentifizierungsdetails sind offen (siehe oben) und vor jeder Arbeit daran zu klären.

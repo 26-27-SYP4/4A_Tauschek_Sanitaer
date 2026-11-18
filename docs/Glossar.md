@@ -12,8 +12,8 @@ Begriffe, die in allen Projektdokumenten einheitlich verwendet werden. Alphabeti
 | Auftraggeber (AG) | Geschäftsführer der Tauschek Sanitär Heizung GmbH |
 | Bedingung | Vergleich der Antwort auf eine Frage mit einem Wert, z. B. „heizsystem ist gleich Biomasse“. Bedingungen werden in Gruppen mit UND, zwischen den Gruppen mit ODER verknüpft. |
 | Endkunde | Der Kunde unseres Kunden; verwendet den Heizungskonfigurator |
-| Feste Frage | Frage, die für den Ablauf zwingend gebraucht wird (z. B. Kontaktdaten, gewünschtes Heizsystem) und daher weder deaktiviert noch im Antworttyp geändert werden kann |
-| Key | Eindeutiger Kurzname einer Frage, z. B. „heizsystem“. Bleibt über alle Versionen gleich; Regeln und Leads beziehen sich darauf. |
+| Fester Key | Key, der für den Ablauf zwingend gebraucht wird (z. B. gewünschtes Heizsystem, Fläche). In jeder Version muss ihn genau eine aktive Frage mit dem erwarteten Antworttyp befüllen. |
+| Key | Name der Variable, in der die Antwort auf eine Frage gespeichert wird, z. B. „heizsystem“. Regeln beziehen sich auf Keys, nicht auf Fragen. In einer Version befüllt jeder Key genau eine Frage; eine neue Frage kann einen bestehenden Key übernehmen. |
 | Kunde | Unser Kunde, die Tauschek Sanitär Heizung GmbH. Nicht zu verwechseln mit dem Endkunden. |
 | KundenDB | Bestehende Datenbank der Firma, in der die Bausteine und Informationen über Kunden gespeichert sind. Auch „Firmendatenbank“ genannt. Zugriff nur lesend über eine API-Schnittstelle. |
 | LeadDB | Datenbank der Verwaltungsapp, in der die Leads gespeichert werden |

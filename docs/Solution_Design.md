@@ -31,9 +31,7 @@
     - Datenbank: Nur Entity Framework Core (ORM) nutzen, um SQL-Injections abzublocken
     - XSS: Alle Textfelder im Backend entschärfen
 ## Fragen, Regeln und Versionierung
-Fachliche Grundlage: `Fachliches_Konzept.md`, Kapitel „Pflege von Fragen und Regeln“. Alle Namen von Tabellen, Feldern und Endpunkten sind vorläufig.
-
-### Datenhoheit und Zugriff
+### Datenspeicherung und Zugriff
 - Fragen, Regeln und Versionen speichert das Backend des Heizungskonfigurators (dort liegen auch die Bausteine, und es braucht beides bei jeder Konfiguration).
 - Die Verwaltungsapp schreibt diese Daten nie direkt in die Datenbank, sondern nur über die API des Heizungskonfigurators.
 - Leads inklusive Antworten und Begründung speichert das Backend der Verwaltungsapp.
@@ -45,32 +43,34 @@ Jede Version ist ein vollständiger, eigener Satz von Datensätzen (Schnappschus
 | Tabelle | Wichtige Felder | Hinweise |
 | ------- | --------------- | -------- |
 | `CatalogVersion` | `Id`, `VersionNumber` (leer beim Entwurf), `Status` (Draft/Published), `PublishedAt`, `PublishedBy`, `Comment`, `ChangeLog` | Genau ein Datensatz mit Status Draft. Veröffentlichte Datensätze werden nie geändert. |
-| `Question` | `Id`, `CatalogVersionId`, `QuestionId` (stabil), `Key`, `Text`, `AnswerType` (Enum/Number/Boolean), `HelpText`, `AllowUnknown`, `DefaultValue`, `Unit`, `Min`, `Max`, `Position`, `IsActive`, `IsFixed` | `Key` und `QuestionId` je Version eindeutig. `Position` bestimmt die Reihenfolge; Verschieben in der Verwaltungskonsole ändert nur `Position`. |
+| `Question` | `Id`, `CatalogVersionId`, `QuestionId` (stabil), `Key`, `Text`, `AnswerType` (Enum/Number/Boolean), `HelpText`, `AllowUnknown`, `DefaultValue`, `Unit`, `Min`, `Max`, `Position`, `IsActive` | `QuestionId` identifiziert die Frage, `Key` ist der Name der Variable, in die die Antwort geschrieben wird. Beide sind je Version eindeutig; derselbe `Key` kann in späteren Versionen von einer anderen Frage befüllt werden. `Position` bestimmt die Reihenfolge; Verschieben ändert nur `Position`. |
 | `AnswerOption` | `Id`, `QuestionRowId`, `Text`, `Position` | Nur bei `AnswerType = Enum` |
-| `Rule` | `Id`, `CatalogVersionId`, `RuleId` (stabil), `Name`, `IsActive`, `ActionType`, `ArticleNumber`, `FixedQuantity`, `QuantityQuestionId`, `TargetQuestionId`, `HintText` | Welche Felder genutzt werden, hängt von `ActionType` ab (siehe unten). |
+| `Rule` | `Id`, `CatalogVersionId`, `RuleId` (stabil), `Name`, `IsActive`, `ActionType`, `ArticleNumber`, `FixedQuantity`, `QuantityKey`, `TargetQuestionId`, `HintText` | Welche Felder genutzt werden, hängt von `ActionType` ab (siehe unten). |
 | `ConditionGroup` | `Id`, `RuleRowId`, `Position` | Bedingungen innerhalb einer Gruppe: UND; Gruppen untereinander: ODER |
-| `Condition` | `Id`, `ConditionGroupId`, `QuestionId`, `Operator`, `Value` | `Value` als Text; Zahlen kulturunabhängig (Punkt als Dezimaltrennzeichen) |
+| `Condition` | `Id`, `ConditionGroupId`, `Key`, `Operator`, `Value` | `Value` als Text; Zahlen kulturunabhängig (Punkt als Dezimaltrennzeichen) |
 
 **ActionType und genutzte Felder:**
 
 | ActionType | Felder |
 | ---------- | ------ |
 | `AddComponentFixed` | `ArticleNumber`, `FixedQuantity` |
-| `AddComponentFromAnswer` | `ArticleNumber`, `QuantityQuestionId` (Frage vom Typ Number) |
+| `AddComponentFromAnswer` | `ArticleNumber`, `QuantityKey` (Key einer Frage vom Typ Number) |
 | `SelectHeatGenerator` | `ArticleNumber` (nur ausgewertet, wenn das gewünschte Heizsystem mit „Ich weiß nicht“ beantwortet wurde) |
 | `ShowQuestion` | `TargetQuestionId` |
 | `ShowHint` | `HintText` |
 | `OnSiteCheck` | `HintText` (optional) |
 | `PersonalConsultation` | – |
 
+Bedingungen und Mengen beziehen sich auf den `Key`, nicht auf die Frage. Nur `ShowQuestion` zielt auf eine bestimmte Frage (`TargetQuestionId`). Die festen Keys (gewünschtes Heizsystem, Verbrauch, Fläche, Gebäudezustand) und der jeweils erwartete `AnswerType` sind im Code festgelegt, weil die Wärmebedarfs- und Wärmeerzeuger-Logik sie braucht.
+
 **Operator je AnswerType:** Number: `Eq`, `Ne`, `Lt`, `Le`, `Gt`, `Ge`; Enum: `Eq`, `Ne`; Boolean: `IsTrue`, `IsFalse`; alle: `IsUnknown`. Einen Typ für Freitext gibt es nicht.
 
 ### Entwurf, Veröffentlichung und Änderungsliste
 - **Entwurf anlegen:** Gibt es keinen Entwurf, wird die letzte veröffentlichte Version vollständig kopiert (neue Primärschlüssel, gleiche stabile IDs).
 - **Bearbeiten:** Alle Änderungen gehen nur auf den Entwurf. Gegen gleichzeitige Bearbeitung durch zwei Benutzer schützt ein Concurrency-Token in EF Core (der zweite Speichervorgang wird mit Hinweis abgelehnt).
-- **Prüfen (Validate):** Regeln verweisen nur auf aktive Fragen, vorhandene Antwortmöglichkeiten und aktive, vorhandene Bausteine; Operator passt zu `AnswerType`; feste Fragen sind aktiv und unverändert im Typ; Keys eindeutig; Bedingungen einer `ShowQuestion`-Regel beziehen sich nur auf Fragen mit kleinerer `Position` als die Zielfrage (verhindert Zyklen und Vorgriffe).
+- **Prüfen (Validate):** Jeder in Regeln verwendete `Key` wird von genau einer aktiven Frage befüllt; Werte verweisen auf vorhandene Antwortmöglichkeiten; Bausteine sind aktiv und vorhanden; Operator passt zum `AnswerType` der befüllenden Frage; jeder `Key` und jede `QuestionId` kommt nur einmal vor; jeder feste Key wird von einer aktiven Frage mit dem erwarteten `AnswerType` befüllt; Bedingungen einer `ShowQuestion`-Regel verwenden nur Keys von Fragen mit kleinerer `Position` als die Zielfrage (verhindert Zyklen und Vorgriffe).
 - **Veröffentlichen:** In einer Datenbanktransaktion: Prüfung erneut ausführen, `VersionNumber` = höchste Nummer + 1, `Status = Published`, `PublishedAt`, `PublishedBy`, `Comment` setzen.
-- **Änderungsliste:** Vergleich von Entwurf und letzter veröffentlichter Version über die stabilen IDs: neu (ID nur im Entwurf), deaktiviert, verschoben (`Position` geändert), geändert (sonstige Felder). Wird als `ChangeLog` mit der Version gespeichert.
+- **Änderungsliste:** Vergleich von Entwurf und letzter veröffentlichter Version über die stabilen IDs: neu (ID nur im Entwurf), gelöscht (ID nur in der alten Version), deaktiviert, verschoben (`Position` geändert), geändert (sonstige Felder, auch `Key` und `AnswerType`). Wird als `ChangeLog` mit der Version gespeichert.
 - **Wiederherstellen:** Kopiert eine alte Version als neuen Entwurf; erst das Veröffentlichen erzeugt die neue Version.
 
 ### Speicherung im Lead (Backend der Verwaltungsapp)
@@ -85,7 +85,7 @@ Der Lead ist in sich vollständig und braucht für die Anzeige keinen Zugriff au
 
 `LeadAnswer` enthält **alle** Fragen der Version, auch nicht eingeblendete (`WasShown = false`, ohne Wert). Antworten sind damit Key/Value-Paare mit Fragetext zum Anfragezeitpunkt.
 
-### Schnittstellen (vorläufig)
+### Schnittstellen
 | Richtung | Endpunkt | Zweck |
 | -------- | -------- | ----- |
 | Konfigurator-Frontend → Konfigurator-Backend | `GET /api/catalog/current` | aktuelle Version: Fragen, Antwortmöglichkeiten, `ShowQuestion`- und `ShowHint`-Regeln (keine Bausteine, keine Preise) |
@@ -103,7 +103,7 @@ Die `/api/admin`-Endpunkte sind nicht öffentlich und prüfen Berechtigungen ser
 
 ### A) Fragen und Regeln pflegen und veröffentlichen
 1. Administrator oder Geschäftsführer öffnet in der Verwaltungsapp die Pflege des Fragenkatalogs. Die Verwaltungsapp lädt den Entwurf über die Konfigurator-API; gibt es keinen, wird er aus der letzten Version angelegt.
-2. Der Benutzer legt Fragen an, ändert sie, verschiebt sie (neue `Position`), legt Regeln mit Bedingungsgruppen an und aktiviert oder deaktiviert sie. Jede Änderung wird sofort im Entwurf gespeichert; der öffentliche Konfigurator bleibt unverändert.
+2. Der Benutzer legt Fragen an, ändert, verschiebt (neue `Position`) oder löscht sie, legt Regeln mit Bedingungsgruppen an und aktiviert, deaktiviert oder löscht sie. Jede Änderung wird sofort im Entwurf gespeichert; der öffentliche Konfigurator bleibt unverändert.
 3. Der Benutzer startet die Prüfung. Fehler werden mit Verweis auf die betroffene Frage bzw. Regel angezeigt.
 4. Im Testmodus gibt der Benutzer Beispielantworten ein. Das Backend führt dieselbe Berechnung wie bei C) aus und liefert eingeblendete Fragen, zutreffende Regeln, Bausteine und Kostenspanne zurück, ohne einen Lead zu erzeugen.
 5. Der Benutzer bestätigt mit optionalem Kommentar. Das Backend prüft erneut, vergibt die Versionsnummer, speichert die Änderungsliste und macht die Version zur aktuellen.

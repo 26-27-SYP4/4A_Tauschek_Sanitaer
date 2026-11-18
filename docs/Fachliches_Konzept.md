@@ -76,14 +76,14 @@ Wie Regeln aufgebaut sind und gepflegt werden, beschreibt das Kapitel „Pflege 
 Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank übernommen; der Zugriff auf die Firmendatenbank erfolgt nur lesend. Leistung und Eignung pflegt der Administrator in der Verwaltungskonsole, ohne Programmierung; die Regeln werden wie im Kapitel „Pflege von Fragen und Regeln“ beschrieben gepflegt. Der Abgleich läuft regelmäßig, damit die Preise aktuell bleiben.
 
 ## Pflege von Fragen und Regeln
-Fragen und Regeln sind nicht fest vorgegeben, sondern werden in der Verwaltungskonsole gepflegt, ohne Programmierung. Der Administrator und der Geschäftsführer dürfen sie bearbeiten und veröffentlichen; Mitarbeiter können sie nur ansehen. Die technische Umsetzung beschreibt das Solution Design.
+Fragen und Regeln sind nicht fest vorgegeben, sondern werden in der Verwaltungskonsole gepflegt, ohne Programmierung. Der Administrator und der Geschäftsführer dürfen sie bearbeiten und veröffentlichen; Mitarbeiter können sie nur ansehen.
 
 ### Fragen
-Jede Antwort des Endkunden gehört zu genau einer Frage und wird zusammen mit deren Kurzname (Key) festgehalten. Zu jeder Frage werden festgelegt:
+Die Antwort des Endkunden auf eine Frage wird in einer Variable gespeichert; deren Name ist der Key (z. B. heizsystem = Biomasse, wohnflaeche = 140). Regeln beziehen sich auf Keys, nicht auf einzelne Fragen. In einer Version befüllt jeder Key genau eine Frage. Zu jeder Frage werden festgelegt:
 
 | Merkmal | Beschreibung | Beispiel |
 | ------- | ------------ | -------- |
-| Key | eindeutiger Kurzname der Frage, auf den sich Regeln beziehen | heizsystem |
+| Key | Variable, in der die Antwort gespeichert wird und auf die sich Regeln beziehen | heizsystem |
 | Fragetext | Text, wie ihn der Endkunde sieht | Welches Heizsystem wünschen Sie sich? |
 | Antworttyp | Auswahl, Zahl oder Ja/Nein (siehe unten) | Auswahl |
 | Hilfetext | optionaler Erklärungstext zur Frage | Wo finde ich meinen Verbrauch? |
@@ -101,12 +101,12 @@ Eine Mehrfachauswahl ist nicht vorgesehen. Freitextfragen gibt es ebenfalls nich
 
 **Reihenfolge:** Der Administrator bzw. der Geschäftsführer ordnet die Fragen in der Verwaltungskonsole durch Verschieben an. Der Heizungskonfigurator zeigt sie in dieser Reihenfolge, eine Frage pro Seite. Folgefragen erscheinen an ihrer Position nur dann, wenn ihre Bedingungen erfüllt sind.
 
-**Änderungen an Fragen:** Der Key bleibt über alle Versionen gleich, damit Leads verschiedener Versionen in der Verwaltungsapp gemeinsam gefiltert und ausgewertet werden können. Fragetext, Hilfetext, Antwortmöglichkeiten und Position dürfen sich ändern. Soll sich der Antworttyp ändern, wird eine neue Frage mit neuem Key angelegt und die alte deaktiviert. Fragen werden nicht gelöscht, sondern deaktiviert.
+**Änderungen an Fragen:** Fragen dürfen geändert, deaktiviert und gelöscht werden; Fragetext, Hilfetext, Antwortmöglichkeiten, Antworttyp und Position sind frei änderbar. Eine neue Frage darf einen bereits verwendeten Key übernehmen, etwa wenn eine Frage neu formuliert wird. Dann gelten bestehende Regeln für diesen Key weiter, und Leads verschiedener Versionen lassen sich in der Verwaltungsapp gemeinsam nach diesem Key filtern. Der Antworttyp gehört zur Frage: Ändert er sich, behält der Key seinen Namen, Regeln mit unpassenden Vergleichen meldet die Prüfung, und alte Leads behalten ihren damaligen Antworttyp. Auswertungen über Versionen hinweg sind für diesen Key dann nur eingeschränkt möglich.
 
-**Feste Fragen:** Einige Fragen werden für den Ablauf zwingend gebraucht und dürfen weder deaktiviert noch im Antworttyp geändert werden: die Kontaktdaten, die Zustimmung zum Datenschutz, das gewünschte Heizsystem und die Angaben, aus denen der Wärmebedarf abgeschätzt wird (Verbrauch, Fläche, Gebäudezustand). Wie der Wärmebedarf abgeschätzt wird, ist nicht über Regeln einstellbar.
+**Feste Keys:** Einige Keys werden für den Ablauf zwingend gebraucht: das gewünschte Heizsystem und die Angaben, aus denen der Wärmebedarf abgeschätzt wird (Verbrauch, Fläche, Gebäudezustand). In jeder Version muss genau eine aktive Frage jeden dieser Keys befüllen, und zwar mit dem Antworttyp, den der Ablauf erwartet. Wie diese Frage formuliert ist und an welcher Position sie steht, darf sich ändern. Kontaktdaten und Datenschutz-Zustimmung sind keine Fragen des Fragenkatalogs, sondern fester Bestandteil am Ende des Konfigurators. Wie der Wärmebedarf abgeschätzt wird, ist nicht über Regeln einstellbar.
 
 ### Bedingungen
-Eine Bedingung vergleicht die Antwort auf eine Frage mit einem Wert, zum Beispiel „heizsystem ist gleich Biomasse“. Welche Vergleiche möglich sind, hängt vom Antworttyp ab:
+Eine Bedingung vergleicht den Wert eines Keys mit einem Wert, zum Beispiel „heizsystem ist gleich Biomasse“. Welche Vergleiche möglich sind, hängt vom Antworttyp der Frage ab, die den Key befüllt:
 
 | Antworttyp | Vergleiche |
 | ---------- | ---------- |
@@ -123,20 +123,20 @@ Eine Regel besteht aus einem Namen, den Bedingungen, einer Aktion und dem Merkma
 | Aktion | Beschreibung | Beispiel |
 | ------ | ------------ | -------- |
 | Baustein mit fester Menge | fügt eine feste Anzahl eines Bausteins hinzu | heizsystem = Biomasse → 1 Stück Pufferspeicher |
-| Baustein mit Menge aus Antwort | Menge ist die Antwort auf eine Frage vom Typ Zahl | eine Heizkreisgruppe je Heizkreis |
+| Baustein mit Menge aus Antwort | Menge ist der Wert eines Keys, der von einer Frage vom Typ Zahl befüllt wird | eine Heizkreisgruppe je Heizkreis |
 | Wärmeerzeuger wählen | nur, wenn beim gewünschten Heizsystem „Ich weiß nicht“ angegeben wurde | heizsystem wurde mit „Ich weiß nicht“ beantwortet UND … → Wärmeerzeuger X |
 | Folgefrage einblenden | eine Frage wird nur angezeigt, wenn die Bedingungen erfüllt sind | Wärmequelle nur bei heizsystem = Wärmepumpe |
 | Hinweis an den Endkunden | Hinweis bei unlogischen oder ungünstigen Kombinationen schon während der Eingabe | Kühlen mit Heizkörpern |
 | „Prüfung vor Ort nötig“ | Hinweis wird beim Lead festgehalten und ins PDF übernommen | Wärmepumpe bei hoher Vorlauftemperatur |
 | Persönliche Beratung | kein automatisches Angebot, Lead für persönliche Beratung markieren | Sonderwunsch |
 
-Bausteine werden in Regeln mit ihrer Artikelnummer angegeben. Die konkreten Regeln und Standardwerte legt der AG fest; die Beispiele in diesem Kapitel zeigen nur den Aufbau.
+Bausteine werden in Regeln mit ihrer Artikelnummer angegeben. Die konkreten Regeln und Standardwerte legt der AG fest.
 
 ### Entwurf, Prüfung und Veröffentlichung
 Änderungen an Fragen und Regeln wirken nicht sofort. Sie werden zunächst in einem Entwurf gesammelt:
 
-1. **Bearbeiten:** Fragen und Regeln im Entwurf anlegen, ändern, verschieben, aktivieren oder deaktivieren.
-2. **Automatische Prüfung:** Das System meldet unter anderem Regeln, die sich auf eine deaktivierte Frage, eine entfernte Antwortmöglichkeit oder einen inaktiven bzw. nicht mehr vorhandenen Baustein beziehen, Vergleiche, die nicht zum Antworttyp passen, Folgefragen, die sich gegenseitig bedingen, und Folgefragen, die vor der Frage stehen, von der sie abhängen.
+1. **Bearbeiten:** Fragen und Regeln im Entwurf anlegen, ändern, verschieben, aktivieren, deaktivieren oder löschen.
+2. **Automatische Prüfung:** Das System meldet unter anderem Regeln, die einen Key verwenden, den keine aktive Frage befüllt, Regeln, die sich auf eine entfernte Antwortmöglichkeit oder einen inaktiven bzw. nicht mehr vorhandenen Baustein beziehen, Keys, die von mehr als einer Frage befüllt werden, feste Keys ohne passende aktive Frage, Vergleiche, die nicht zum Antworttyp passen, Folgefragen, die sich gegenseitig bedingen, und Folgefragen, die vor der Frage stehen, von der sie abhängen.
 3. **Testmodus:** Der Benutzer gibt Beispielantworten ein und sieht, welche Fragen eingeblendet werden, welche Regeln zutreffen, welche Bausteine gewählt werden und welche Kostenspanne entsteht.
 4. **Bestätigen:** Erst danach wird der Entwurf veröffentlicht. Ab diesem Zeitpunkt verwendet der Heizungskonfigurator die neuen Fragen und Regeln.
 
@@ -145,7 +145,7 @@ Jede Veröffentlichung erzeugt eine neue Version des gesamten Fragenkatalogs mit
 - fortlaufende Versionsnummer
 - Zeitpunkt und Benutzer der Veröffentlichung
 - optionaler Kommentar
-- Änderungsliste: neue, geänderte, verschobene und deaktivierte Fragen sowie neue, geänderte, aktivierte und deaktivierte Regeln
+- Änderungsliste: neue, geänderte, verschobene, deaktivierte und gelöschte Fragen sowie neue, geänderte, aktivierte, deaktivierte und gelöschte Regeln
 
 Veröffentlichte Versionen werden nicht mehr verändert. Frühere Versionen können eingesehen werden; die Rückkehr zu einer früheren Version erzeugt eine neue Version mit deren Inhalt. Leads werden durch neue Versionen nicht neu berechnet (siehe „Entstehung eines Leads“).
 
