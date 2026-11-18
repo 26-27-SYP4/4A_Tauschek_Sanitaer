@@ -1,0 +1,33 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio / Rider user files
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+
+# Angular / Node
+node_modules/
+.angular/
+dist/
+coverage/
+npm-debug.log*
+
+# VS Code: keep shared settings, ignore the rest
+**/.vscode/*
+!**/.vscode/settings.json
+!**/.vscode/tasks.json
+!**/.vscode/launch.json
+!**/.vscode/extensions.json
+
+# Environment files and secrets
+.env
+.env.*
+appsettings.*.local.json
+
+# OS files
+.DS_Store
+Thumbs.db
