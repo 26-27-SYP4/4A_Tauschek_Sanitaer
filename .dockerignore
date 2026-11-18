@@ -1,0 +1,7 @@
+.git
+**/bin/
+**/obj/
+**/.vs/
+**/.angular/
+**/node_modules/
+**/appsettings*.json
