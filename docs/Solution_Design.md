@@ -16,6 +16,17 @@
 - Backend: C#
 - Datenbank: SQL
 
+## API-Design
+- API-Stil: REST (Representational State Transfer)
+- Backend: ASP.NET Core Web API mit C#
+- Datenformat: JSON für Anfrage- und Antwortdaten
+- HTTP-Methoden: GET zum Lesen, POST zum Erstellen bzw. Ausführen, PUT zum Ändern und DELETE zum Löschen
+- Endpunkte: Ressourcenorientierte Endpunkte unter `/api/...`; die konkreten Schnittstellen sind im Abschnitt „Schnittstellen“ beschrieben
+- Dokumentation und Testen: OpenAPI/Swagger zur automatischen API-Dokumentation und zum Testen der Endpunkte
+- Fehlerbehandlung: passende HTTP-Statuscodes und eine verständliche Fehlermeldung zurückgeben
+- Die Schnittstellen zwischen Heizungskonfigurator und Verwaltungsapp werden nach diesem API-Design umgesetzt.
+- Die API der Firmendatenbank des Auftraggebers ist noch nicht bekannt. Ihr Protokoll und Datenformat werden nach Rücksprache mit dem Auftraggeber festgelegt; der Zugriff bleibt lesend.
+
 ## Konvention
 - Konventionen in `Konventionen.md` festgelegt (Datei liegt im selben Ordner wie dieses Dokument).
 
