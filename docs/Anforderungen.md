@@ -8,7 +8,7 @@ Grundlage: `Fachliches_Konzept.md` v0.5.0, `Solution_Design.md` v0.3.0, Entwurf 
 AG = Auftraggeber, Endkunde = Kunde des AG
  
 ## Legende
-- **Priorität nach MoSCoW:** M = Must (muss in der ersten Version sein), S = Should (soll, wenn möglich), C = Could (kann, wenn Zeit bleibt)
+- **Priorität (Zahlen):** 1 = zwingende Grundbasis ab Projektstart, 2 = notwendige Kernfunktion, 3 = wichtig für den vollständigen Arbeitsablauf, 4 = sinnvolle Erweiterung, 5 = optional bzw. später umsetzbar
 - **Bezug:** Kapitel im Fachlichen Konzept, aus dem die Anforderung stammt
 # Funktionale Anforderungen
  
@@ -74,23 +74,23 @@ Bezug: Fachkonzept „Soll-Zustand“, „Sonderfälle“
  
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| PDF-01 | Nach dem Absenden wird automatisch ein PDF mit der Kostenspanne und den gewählten Bausteinen erstellt. | Nach erfolgreichem Absenden wird ein PDF erzeugt, das Kostenspanne und ausgewählte Bausteine enthält. | M |
-| PDF-02 | Das PDF weist die Kostenschätzung deutlich als unverbindlichen Richtwert aus, nicht als verbindliche Feinplanung. | Im PDF ist die Kostenschätzung eindeutig als unverbindlicher Richtwert und nicht als verbindliche Feinplanung bezeichnet. | M |
-| PDF-03 | Das PDF enthält alle Annahmen (Standardwerte bei „Ich weiß nicht“) und Hinweise (z. B. „Prüfung vor Ort nötig“). | Alle verwendeten Standardannahmen und alle zutreffenden Hinweise sind im PDF angeführt. | M |
-| PDF-04 | Der Endkunde kann das PDF nach dem Absenden sofort herunterladen. | Der Download des erzeugten PDFs ist unmittelbar nach dem Absenden möglich und die Datei lässt sich öffnen. | M |
-| PDF-05 | Das PDF enthält Logo und Kontaktdaten des AG. | Das PDF zeigt das Logo sowie die festgelegten Kontaktdaten des AG. | S |
-| PDF-06 | Der Endkunde bekommt das PDF zusätzlich per E-Mail. | Nach dem Absenden wird das PDF an die angegebene E-Mail-Adresse versendet. | S |
-| PDF-07 | Kann kein automatisches Angebot erstellt werden, bekommt der Endkunde statt des PDFs eine Bestätigung, dass sich der AG persönlich meldet. | Bei einem Testfall ohne automatisches Angebot wird eine Bestätigung angezeigt, die eine persönliche Rückmeldung des AG ankündigt. | S |
+| PDF-01 | Nach dem Absenden wird automatisch ein PDF mit der Kostenspanne und den gewählten Bausteinen erstellt. | Nach erfolgreichem Absenden wird ein PDF erzeugt, das Kostenspanne und ausgewählte Bausteine enthält. | 2 |
+| PDF-02 | Das PDF weist die Kostenschätzung deutlich als unverbindlichen Richtwert aus, nicht als verbindliche Feinplanung. | Im PDF ist die Kostenschätzung eindeutig als unverbindlicher Richtwert und nicht als verbindliche Feinplanung bezeichnet. | 2 |
+| PDF-03 | Das PDF enthält alle Annahmen (Standardwerte bei „Ich weiß nicht“) und Hinweise (z. B. „Prüfung vor Ort nötig“). | Alle verwendeten Standardannahmen und alle zutreffenden Hinweise sind im PDF angeführt. | 2 |
+| PDF-04 | Der Endkunde kann das PDF nach dem Absenden sofort herunterladen. | Der Download des erzeugten PDFs ist unmittelbar nach dem Absenden möglich und die Datei lässt sich öffnen. | 2 |
+| PDF-07 | Kann kein automatisches Angebot erstellt werden, bekommt der Endkunde statt des PDFs eine Bestätigung, dass sich der AG persönlich meldet. | Bei einem Testfall ohne automatisches Angebot wird eine Bestätigung angezeigt, die eine persönliche Rückmeldung des AG ankündigt. | 3 |
+| PDF-05 | Das PDF enthält Logo und Kontaktdaten des AG. | Das PDF zeigt das Logo sowie die festgelegten Kontaktdaten des AG. | 4 |
+| PDF-06 | Der Endkunde bekommt das PDF zusätzlich per E-Mail. | Nach dem Absenden wird das PDF an die angegebene E-Mail-Adresse versendet. | 4 |
  
 ## 5. Energieberatung
 Bezug: Meeting 19.10.2026 („automatische Energieberatung mit aktuellen Tagespreisen“). **Noch nicht im Fachkonzept beschrieben**, Kapitel muss ergänzt werden.
  
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| ENB-01 | Das PDF enthält die geschätzten jährlichen Energiekosten der neuen Heizung. | Das PDF weist die geschätzten jährlichen Energiekosten der neuen Heizung aus. | S |
-| ENB-02 | Bei bekanntem bisherigen Verbrauch werden die Energiekosten der alten und der neuen Heizung verglichen. | Bei vorhandenem Altverbrauch enthält die Ausgabe die jährlichen Kosten der alten und der neuen Heizung in vergleichbarer Form. | S |
-| ENB-03 | Der Administrator kann die Energiepreise (Heizöl, Gas, Strom, Pellets, Holz) manuell pflegen. | Ein Administrator kann Preise für Heizöl, Gas, Strom, Pellets und Holz ändern und speichern; die Berechnung verwendet die gespeicherten Werte. | S |
-| ENB-04 | Energiepreise werden täglich automatisch aus einer öffentlichen Quelle übernommen; bei Ausfall wird der letzte bekannte Preis verwendet. | Bei erfolgreichem Abruf werden Preise aktualisiert; bei simuliertem Quellenausfall bleiben die zuletzt gespeicherten Preise in Verwendung. | C |
+| ENB-01 | Das PDF enthält die geschätzten jährlichen Energiekosten der neuen Heizung. | Das PDF weist die geschätzten jährlichen Energiekosten der neuen Heizung aus. | 4 |
+| ENB-02 | Bei bekanntem bisherigen Verbrauch werden die Energiekosten der alten und der neuen Heizung verglichen. | Bei vorhandenem Altverbrauch enthält die Ausgabe die jährlichen Kosten der alten und der neuen Heizung in vergleichbarer Form. | 4 |
+| ENB-03 | Der Administrator kann die Energiepreise (Heizöl, Gas, Strom, Pellets, Holz) manuell pflegen. | Ein Administrator kann Preise für Heizöl, Gas, Strom, Pellets und Holz ändern und speichern; die Berechnung verwendet die gespeicherten Werte. | 4 |
+| ENB-04 | Energiepreise werden täglich automatisch aus einer öffentlichen Quelle übernommen; bei Ausfall wird der letzte bekannte Preis verwendet. | Bei erfolgreichem Abruf werden Preise aktualisiert; bei simuliertem Quellenausfall bleiben die zuletzt gespeicherten Preise in Verwendung. | 5 |
  
 ## 6. Leadverwaltung
 Bezug: Fachkonzept „Leadverwaltung“
@@ -119,16 +119,16 @@ Bezug: Fachkonzept „Benachrichtigungssystem“
  
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| BEN-01 | Bei jedem neuen Lead werden alle Benutzer mit aktivierter Benachrichtigung per E-Mail benachrichtigt (Kunde, Kontakt, wichtigste Angaben, Kostenschätzung, Link zum Lead). | Bei einem neuen Lead erhalten alle Benutzer mit aktivierter Benachrichtigung eine E-Mail mit Kunde, Kontaktdaten, wichtigsten Angaben, Kostenschätzung und Link zum Lead. | M |
-| BEN-02 | Die Benachrichtigung wird automatisch und ohne Verzögerung nach Abschluss der Konfiguration ausgelöst. | Die Benachrichtigung wird nach Abschluss der Konfiguration automatisch ausgelöst; der Versand startet ohne manuelle Aktion. | M |
-| BEN-03 | Ein Lead wird gespeichert, auch wenn der Versand fehlschlägt; fehlgeschlagene Versuche werden wiederholt und protokolliert. | Bei simuliertem E-Mail-Ausfall bleibt der Lead gespeichert; Versandversuche werden erneut ausgeführt und der Fehler wird protokolliert. | M |
-| BEN-04 | Der Benachrichtigungsstatus ist in der Verwaltungskonsole beim Lead sichtbar. | In der Leadansicht ist erkennbar, ob die Benachrichtigung gesendet wurde oder fehlgeschlagen ist. | S |
-| BEN-05 | Dringende Leads werden in der Benachrichtigung hervorgehoben. | Bei einem Lead mit hoher Priorität enthält die Benachrichtigung eine eindeutige Dringlichkeitskennzeichnung. | S |
-| BEN-06 | Der Administrator wird informiert, wenn Angebot oder PDF nicht erstellt werden konnten. | Wenn die PDF- oder Angebotserstellung fehlschlägt, erhält der Administrator eine entsprechende Meldung. | S |
-| BEN-07 | Das System ist so aufgebaut, dass weitere Kanäle (Push, SMS, WhatsApp) ohne Umbau ergänzt werden können. | Ein zusätzlicher Benachrichtigungskanal kann über eine klar abgegrenzte Schnittstelle ergänzt werden, ohne bestehende Leadabläufe umzubauen. | S |
-| BEN-08 | Benutzer wählen selbst, über welche Kanäle sie benachrichtigt werden. | Ein Benutzer kann seine gewünschten Ereignisse und Benachrichtigungskanäle speichern; nur diese Einstellungen werden berücksichtigt. | C |
-| BEN-09 | Erinnerung bei Leads, die zu lange unbearbeitet bleiben. | Für einen länger unbearbeiteten Lead wird nach Ablauf der konfigurierten Zeit eine Erinnerung an den festgelegten Empfänger ausgelöst. | C |
-| BEN-10 | Mindestens ein weiterer Kanal neben E-Mail (Push, SMS oder WhatsApp). | Ein konfigurierter zusätzlicher Kanal neben E-Mail kann eine Testbenachrichtigung erfolgreich zustellen. | C |
+| BEN-03 | Ein Lead wird gespeichert, auch wenn der Versand fehlschlägt; fehlgeschlagene Versuche werden wiederholt und protokolliert. | Bei simuliertem E-Mail-Ausfall bleibt der Lead gespeichert; Versandversuche werden erneut ausgeführt und der Fehler wird protokolliert. | 2 |
+| BEN-01 | Bei jedem neuen Lead werden alle Benutzer mit aktivierter Benachrichtigung per E-Mail benachrichtigt (Kunde, Kontakt, wichtigste Angaben, Kostenschätzung, Link zum Lead). | Bei einem neuen Lead erhalten alle Benutzer mit aktivierter Benachrichtigung eine E-Mail mit Kunde, Kontaktdaten, wichtigsten Angaben, Kostenschätzung und Link zum Lead. | 3 |
+| BEN-02 | Die Benachrichtigung wird automatisch und ohne Verzögerung nach Abschluss der Konfiguration ausgelöst. | Die Benachrichtigung wird nach Abschluss der Konfiguration automatisch ausgelöst; der Versand startet ohne manuelle Aktion. | 3 |
+| BEN-06 | Der Administrator wird informiert, wenn Angebot oder PDF nicht erstellt werden konnten. | Wenn die PDF- oder Angebotserstellung fehlschlägt, erhält der Administrator eine entsprechende Meldung. | 3 |
+| BEN-04 | Der Benachrichtigungsstatus ist in der Verwaltungskonsole beim Lead sichtbar. | In der Leadansicht ist erkennbar, ob die Benachrichtigung gesendet wurde oder fehlgeschlagen ist. | 4 |
+| BEN-05 | Dringende Leads werden in der Benachrichtigung hervorgehoben. | Bei einem Lead mit hoher Priorität enthält die Benachrichtigung eine eindeutige Dringlichkeitskennzeichnung. | 4 |
+| BEN-07 | Das System ist so aufgebaut, dass weitere Kanäle (Push, SMS, WhatsApp) ohne Umbau ergänzt werden können. | Ein zusätzlicher Benachrichtigungskanal kann über eine klar abgegrenzte Schnittstelle ergänzt werden, ohne bestehende Leadabläufe umzubauen. | 5 |
+| BEN-08 | Benutzer wählen selbst, über welche Kanäle sie benachrichtigt werden. | Ein Benutzer kann seine gewünschten Ereignisse und Benachrichtigungskanäle speichern; nur diese Einstellungen werden berücksichtigt. | 5 |
+| BEN-09 | Erinnerung bei Leads, die zu lange unbearbeitet bleiben. | Für einen länger unbearbeiteten Lead wird nach Ablauf der konfigurierten Zeit eine Erinnerung an den festgelegten Empfänger ausgelöst. | 5 |
+| BEN-10 | Mindestens ein weiterer Kanal neben E-Mail (Push, SMS oder WhatsApp). | Ein konfigurierter zusätzlicher Kanal neben E-Mail kann eine Testbenachrichtigung erfolgreich zustellen. | 5 |
  
 # Nicht-funktionale Anforderungen
 Jede Anforderung hat Akzeptanzkriterien, anhand derer überprüft wird, ob sie erfüllt ist.
@@ -136,30 +136,30 @@ Jede Anforderung hat Akzeptanzkriterien, anhand derer überprüft wird, ob sie e
 ## 8. Benutzbarkeit
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| BENUTZ-01 | Die Web-App funktioniert auf Smartphone, Tablet und Laptop. | Alle Seiten sind bei 360 px, 768 px und 1366 px Breite ohne waagrechtes Scrollen bedienbar; getestet in aktuellem Chrome, Firefox, Safari und Edge. | M |
-| BENUTZ-02 | Der Konfigurator ist ein intuitiver Schritt-für-Schritt-Assistent. | 3 Testpersonen ohne Vorwissen schließen den Konfigurator ohne Hilfe ab; Ziel unter 10 Minuten. | M |
-| BENUTZ-03 | Alle Texte für Endkunden sind auf Deutsch und ohne Fachbegriffe bzw. mit Erklärung. | Review der Texte durch den AG. | S |
+| BENUTZ-01 | Die Web-App funktioniert auf Smartphone, Tablet und Laptop. | Alle Seiten sind bei 360 px, 768 px und 1366 px Breite ohne waagrechtes Scrollen bedienbar; getestet in aktuellem Chrome, Firefox, Safari und Edge. | 2 |
+| BENUTZ-02 | Der Konfigurator ist ein intuitiver Schritt-für-Schritt-Assistent. | 3 Testpersonen ohne Vorwissen schließen den Konfigurator ohne Hilfe ab; Ziel unter 10 Minuten. | 2 |
+| BENUTZ-03 | Alle Texte für Endkunden sind auf Deutsch und ohne Fachbegriffe bzw. mit Erklärung. | Review der Texte durch den AG. | 3 |
  
 ## 9. Leistung
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| LEIST-01 | Seitenwechsel innerhalb des Konfigurators laden schnell. | Wechsel zur nächsten Frage in unter 1 Sekunde (gemessen im Browser, normale Breitbandverbindung). | M |
-| LEIST-02 | Die Kostenschätzung wird ohne spürbare Verzögerung berechnet. | Berechnung inkl. Antwort des Backends in unter 2 Sekunden; PDF-Erstellung in unter 5 Sekunden. | M |
-| LEIST-03 | Die Benachrichtigung erreicht die Empfänger zeitnah. | E-Mail wird innerhalb von 1 Minute nach dem Absenden an die vorgesehenen Empfänger verschickt. | S |
+| LEIST-02 | Die Kostenschätzung wird ohne spürbare Verzögerung berechnet. | Berechnung inkl. Antwort des Backends in unter 2 Sekunden; PDF-Erstellung in unter 5 Sekunden. | 2 |
+| LEIST-01 | Seitenwechsel innerhalb des Konfigurators laden schnell. | Wechsel zur nächsten Frage in unter 1 Sekunde (gemessen im Browser, normale Breitbandverbindung). | 3 |
+| LEIST-03 | Die Benachrichtigung erreicht die Empfänger zeitnah. | E-Mail wird innerhalb von 1 Minute nach dem Absenden an die vorgesehenen Empfänger verschickt. | 4 |
  
 ## 10. Sicherheit und Datenschutz
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| SICH-01 | Personenbezogene Daten werden verschlüsselt in der Datenbank gespeichert. | Datenbank bzw. betroffene Spalten sind verschlüsselt; Klartext ist ohne Schlüssel nicht lesbar. | M |
-| SICH-02 | Die gesamte Kommunikation läuft verschlüsselt. | Nur HTTPS; Aufrufe über HTTP werden auf HTTPS umgeleitet. | M |
-| SICH-03 | Passwörter der Benutzer werden nur gehasht gespeichert; die Anmeldung erfolgt über JWT. | Code-Review; kein Passwort im Klartext in der Datenbank. | M |
-| SICH-04 | Das System ist gegen SQL-Injection und XSS geschützt. | Datenbankzugriff nur über Entity Framework Core; Texteingaben werden im Backend bereinigt; Test mit typischen Angriffseingaben. | M |
-| SICH-05 | Die Verarbeitung entspricht der DSGVO. | Zustimmung zum Datenschutz wird mit Zeitpunkt gespeichert; Leads können auf Wunsch gelöscht werden; Testdaten sind anonymisiert. | M |
-| SICH-06 | Logdateien enthalten keine echten Kundendaten. | Review der Logs nach einem Testdurchlauf. | M |
+| SICH-01 | Personenbezogene Daten werden verschlüsselt in der Datenbank gespeichert. | Datenbank bzw. betroffene Spalten sind verschlüsselt; Klartext ist ohne Schlüssel nicht lesbar. | 1 |
+| SICH-02 | Die gesamte Kommunikation läuft verschlüsselt. | Nur HTTPS; Aufrufe über HTTP werden auf HTTPS umgeleitet. | 1 |
+| SICH-03 | Passwörter der Benutzer werden nur gehasht gespeichert; die Anmeldung erfolgt über JWT. | Code-Review; kein Passwort im Klartext in der Datenbank. | 1 |
+| SICH-04 | Das System ist gegen SQL-Injection und XSS geschützt. | Datenbankzugriff nur über Entity Framework Core; Texteingaben werden im Backend bereinigt; Test mit typischen Angriffseingaben. | 1 |
+| SICH-05 | Die Verarbeitung entspricht der DSGVO. | Zustimmung zum Datenschutz wird mit Zeitpunkt gespeichert; Leads können auf Wunsch gelöscht werden; Testdaten sind anonymisiert. | 1 |
+| SICH-06 | Logdateien enthalten keine echten Kundendaten. | Review der Logs nach einem Testdurchlauf. | 2 |
  
 ## 11. Zuverlässigkeit und Wartbarkeit
 | Nr. | Anforderung | Akzeptanzkriterien | Prio |
 | --- | ----------- | ------------------- | ---- |
-| WART-01 | Die Datenbank wird täglich automatisch gesichert. | Täglicher verschlüsselter SQL-Dump auf einem separaten Speichermedium des AG; Wiederherstellung einmal erfolgreich getestet. | M |
-| WART-02 | Fragen, Bausteine und Regeln sind ohne Änderung am Programmcode erweiterbar. | Eine neue Frage und ein neuer Baustein werden über die Verwaltungskonsole angelegt und funktionieren ohne neues Deployment. | S |
-| WART-03 | Der Code ist automatisch getestet. | Unit-, Integrations- und End-to-End-Tests laufen in der CI/CD-Pipeline bei jedem Merge auf main. | S |
+| WART-01 | Die Datenbank wird täglich automatisch gesichert. | Täglicher verschlüsselter SQL-Dump auf einem separaten Speichermedium des AG; Wiederherstellung einmal erfolgreich getestet. | 2 |
+| WART-03 | Der Code ist automatisch getestet. | Unit-, Integrations- und End-to-End-Tests laufen in der CI/CD-Pipeline bei jedem Merge auf main. | 3 |
+| WART-02 | Fragen, Bausteine und Regeln sind ohne Änderung am Programmcode erweiterbar. | Eine neue Frage und ein neuer Baustein werden über die Verwaltungskonsole angelegt und funktionieren ohne neues Deployment. | 4 |
