@@ -1,21 +1,19 @@
 # Was laut Claude noch fehlt
-Datum: 18.11.2026
+Datum: 25.11.2026
 
 ## Offene Fragen
 
 ### Fachlich: Das liefert oder entscheidet der AG
 1. **Konkrete Fragen mit Keys, Antworttypen und Antwortmöglichkeiten.** Damit wird die erste Version befüllt.
 2. **Standardwerte für „Ich weiß nicht“** bei jeder Frage, die diese Antwort erlaubt.
-3. **Wärmebedarf:** Wie wird er aus Verbrauch oder ersatzweise aus Fläche und Gebäudezustand geschätzt (BAU-01)?
-4. **Konkrete Regeln:** Welche Bedingung führt zu welchem Baustein in welcher Menge, und welche Kombinationen sind unlogisch oder brauchen eine Prüfung vor Ort?
-5. **Eignungsbereiche der Wärmeerzeuger** und wie sich die **Preisspanne** ergibt. Woher kommen Unter- und Obergrenze, wenn die Firmendatenbank vermutlich nur einen Preis hat?
-6. **Rundung**, wenn eine Menge aus einer Zahl mit Kommastellen kommt.
-7. **Laufende Konfigurationen** bei einer neuen Version: Bleiben sie bei der alten Version?
-8. **Status-Werte der Leads** (vorläufige Liste), **Merkmale für die Priorität** und Gewichtung.
-9. **Benachrichtigungskanal** neben E-Mail: ja oder nein, und welcher?
-10. **Energieberatung:** Was genau ist gemeint? Es gibt ENB-01 bis 04, aber kein Kapitel im Fachkonzept.
-11. **Aufbewahrung und Löschung von Leads** (DSGVO), wer die Website betreut und wie der Konfigurator eingebunden wird.
-12. **Kontaktdaten und Datenschutz** sind ein fester Teil am Ende, nicht Teil des Fragenkatalogs. Muss noch bestätigt werden.
+3. **Konkrete Regeln:** Welche Bedingung führt zu welchem Baustein in welcher Menge, und welche Kombinationen sind unlogisch?
+4. **Prozentsatz der Preisspanne:** Um wie viel Prozent wird die Summe der Preise nach unten und oben erweitert?
+5. **Laufende Konfigurationen** bei einer neuen Version: Bleiben sie bei der alten Version?
+6. **Status-Werte der Leads** (vorläufige Liste), **Merkmale für die Priorität** und Gewichtung.
+7. **Benachrichtigungskanal** neben E-Mail: ja oder nein, und welcher?
+8. **Energieberatung:** Was genau ist gemeint? Es gibt ENB-01 bis 04, aber kein Kapitel im Fachkonzept.
+9. **Aufbewahrung und Löschung von Leads** (DSGVO), wer die Website betreut und wie der Konfigurator eingebunden wird.
+10. **Kontaktdaten und Datenschutz** sind ein fester Teil am Ende, nicht Teil des Fragenkatalogs. Muss noch bestätigt werden.
 
 ### Technisch: Das entscheidet das Team
 1. **Versionen:** Im Repo stecken schon Angular 22 und .NET 10. Laut AGENTS.md ist das aber noch offen und muss bestätigt werden.
@@ -46,4 +44,4 @@ Vieles ist gar nicht vom AG blockiert. Wenn die Projektstruktur und die technisc
 - Konfigurator, der die Fragen dynamisch aus der Datenbank aufbaut
 - Grundgerüst der Leadverwaltung
 
-Wärmebedarf, Preise und die Anbindung an die Firmendatenbank kommen dazu, sobald der AG die Angaben liefert.
+Konkrete Regeln, Preise und die Anbindung an die Firmendatenbank kommen dazu, sobald der AG die Angaben liefert.

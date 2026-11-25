@@ -1,7 +1,7 @@
 # Risikodokument: Heizungskonfigurator
 
-Stand: 11.11.2026  
-Version: 0.2.0  
+Stand: 25.11.2026  
+Version: 0.3.0  
 Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix
 
 ## Allgemeines
@@ -13,7 +13,7 @@ Die drei größten Risiken sind die Anbindung der fremden Firmendatenbank, das f
 | Projekt | Heizungskonfigurator mit Kostenschätzung |
 | Auftraggeber (AG) | Tauschek Sanitär Heizung GmbH |
 | Projektteam | Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix |
-| Grundlage | Fachliches Konzept, Version 0.4.0 |
+| Grundlage | Fachliches Konzept, Version 0.6.0 |
 | Version dieses Dokuments | 0.2.0 |
 
 Ausgangslage des Teams: Erfahrung mit C# und Angular ist vorhanden. Neu für uns sind die Arbeit mit einer fremden Datenbank, die Zusammenarbeit über GitHub, das Erzeugen von PDFs, der automatische Mailversand und das Fachgebiet Heizungstechnik.
@@ -64,7 +64,7 @@ Jedes Risiko hat vorbeugende Maßnahmen, einen Plan B für den Fall, dass es ein
 
 ### R01 – Anbindung der fremden Firmendatenbank
 
-- **Ursache:** Aufbau, Datenbanksystem und API-Schnittstelle der Firmendatenbank sind uns unbekannt. Leistung und Eignung der Bausteine stehen dort nicht drin, sie müssen ergänzt werden.
+- **Ursache:** Aufbau, Datenbanksystem und API-Schnittstelle der Firmendatenbank sind uns unbekannt.
 - **Auswirkung:** Ohne Bausteine keine Kostenschätzung; die Kernfunktion fehlt.
 - **Vorbeugend:** Früh mit dem AG klären, welches System im Einsatz ist und wie die API-Schnittstelle aussieht. Nur lesend zugreifen, nie direkt in die Firmendatenbank schreiben. Eine eigene Import-Schicht bauen, die die Daten der API auf unsere Bausteine abbildet. Mit Beispieldaten entwickeln.
 - **Plan B:** Bausteine vorerst manuell oder per CSV in die eigene Datenbank eintragen; der automatische Import folgt später.
@@ -72,7 +72,7 @@ Jedes Risiko hat vorbeugende Maßnahmen, einen Plan B für den Fall, dass es ein
 
 ### R02 – Fehlendes Fachwissen über Heizungen
 
-- **Ursache:** Niemand im Team kennt sich mit Heizungstechnik aus (Wärmebedarf, Leistungsstufen, Vorlauftemperatur).
+- **Ursache:** Niemand im Team kennt sich mit Heizungstechnik aus (Heizsysteme, Vorlauftemperatur, welche Bausteine wozu passen).
 - **Auswirkung:** Falsche Regeln führen zu falschen Bausteinen und unrealistischen Preisen; der Konfigurator verliert das Vertrauen der Endkunden.
 - **Vorbeugend:** Den Geschäftsführer als Fachexperten einbinden. Alle Regeln („Bedingung → Baustein“) vom AG formulieren und schriftlich bestätigen lassen. Ein Glossar der Fachbegriffe anlegen. Regeln konfigurierbar statt im Code speichern, damit der AG sie korrigieren kann. Ergebnisse mit früheren echten Angeboten des AG vergleichen.
 - **Plan B:** Im Zweifel keine automatische Schätzung, sondern den Lead für persönliche Beratung markieren (im Konzept bereits vorgesehen).
@@ -209,3 +209,4 @@ Das Risikodokument ist ein lebendes Dokument und wird während des ganzen Projek
 | --- | --- | --- |
 | 0.1.0 | 04.11.2026 | Erstfassung mit 15 Risiken |
 | 0.2.0 | 11.11.2026 | Grundlage auf Fachliches Konzept 0.4.0 aktualisiert; Anbindung der Firmendatenbank über API (R01, R07); reCaptcha als Should (R13); Verweis in R08 korrigiert |
+| 0.3.0 | 25.11.2026 | Grundlage auf Fachliches Konzept 0.6.0 aktualisiert; Bausteine nur noch über Regeln, ohne Leistung und Eignung (R01, R02) |

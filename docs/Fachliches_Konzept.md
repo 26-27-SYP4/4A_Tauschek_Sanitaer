@@ -1,6 +1,6 @@
 # Fachliches Konzept: Heizungskonfigurator
-Version: 0.5.0  
-Datum: 18.11.2026  
+Version: 0.6.0  
+Datum: 25.11.2026  
 Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix  
 Auftraggeber: Tauschek Sanitär Heizung GmbH  
 AG bedeutet im Folgenden: Auftraggeber  
@@ -23,57 +23,41 @@ Am Ende des Konfigurationsprozesses geben die Endkunden ihre Kontaktdaten bekann
 Der Konfigurator muss flexibel in der Erweiterbarkeit der Fragen sein, damit bestehende Fragen angepasst, entfernt oder neue Fragen hinzugefügt werden können. Für Fragen, die Endkunden möglicherweise nicht beantworten können, gibt es die Antwort „Ich weiß nicht“ mit einem hinterlegten Standardwert. Wie Fragen und Regeln gepflegt und versioniert werden, beschreibt das Kapitel „Pflege von Fragen und Regeln“. Der vom Geschäftsführer bereitgestellte Fragenkatalog bildet die erste Version.
 
 ## Bausteine
-Die Kostenschätzung wird aus standardisierten Bausteinen zusammengesetzt. Ein Baustein ist ein konkretes, vordefiniertes Produkt oder Leistungspaket aus dem Sortiment des AG, zum Beispiel eine Luft-Wärmepumpe mit bestimmter Heizleistung, die für ein großes Einfamilienhaus geeignet ist. Das System wählt anhand der Antworten des Endkunden passende Bausteine aus und zählt ihre Preise zu einem groben Angebot zusammen.
+Die Kostenschätzung wird aus standardisierten Bausteinen zusammengesetzt. Ein Baustein ist ein konkretes, vordefiniertes Produkt oder Leistungspaket aus dem Sortiment des AG, zum Beispiel ein Pelletkessel, ein Pufferspeicher oder die Montage. Regeln wählen anhand der Antworten des Endkunden die Bausteine aus; das System zählt ihre Preise zu einem groben Angebot zusammen.
 
 Die Bausteine werden über eine API-Schnittstelle aus der Firmendatenbank des AG in die Datenbank des Heizungskonfigurators übernommen und automatisch zusammengeführt.
 
 ### Merkmale eines Bausteins
 | Merkmal | Beschreibung | Beispiel |
 | ------- | ------------ | -------- |
-| Bezeichnung | Name, wie er im Angebot erscheint | Luft-Wärmepumpe für große Einfamilienhäuser |
-| Kategorie | Art des Bausteins | Wärmeerzeuger |
-| Technologie | genauere Bauart | Wärmepumpe, Wärmequelle Luft |
-| Heizleistung (kW) | Nennleistung bzw. Leistungsbereich | Wert aus der Firmendatenbank |
-| Eignung | für welche Gebäude der Baustein passt, z. B. Wärmebedarf von–bis | großes Haus, gut gedämmt |
-| Hersteller und Modell | optional, für den AG | laut Firmendatenbank |
-| Preis (€) | Richtpreis für das grobe Angebot | laut Firmendatenbank |
 | Artikelnummer | Verweis auf den Artikel in der Firmendatenbank | laut Firmendatenbank |
+| Bezeichnung | Name, wie er im Angebot erscheint | laut Firmendatenbank |
+| Text | Beschreibung des Bausteins | laut Firmendatenbank |
+| Preis (€) | Richtpreis für das grobe Angebot | laut Firmendatenbank |
 | Aktiv | ob der Baustein im Konfigurator verwendet wird | ja / nein |
 
-### Kategorien
-| Kategorie | Beispiele | Im Angebot |
-| --------- | --------- | ---------- |
-| Wärmeerzeuger | Wärmepumpe (Luft, Erdreich, Grundwasser), Pelletkessel, Kombikessel; jeweils in mehreren Leistungsstufen | immer genau einer |
-| Speicher | Pufferspeicher, Warmwasserspeicher in verschiedenen Größen | je nach Heizsystem und Warmwasserbedarf |
-| Zubehör | Heizkreisgruppen, Pelletlager, Kaminsanierung, Solaranbindung | je nach Gebäude und Wünschen |
-| Dienstleistungen | Montage und Inbetriebnahme, Demontage der Altanlage, Öltank-Entsorgung | je nach Ausgangssituation |
-
-### Vom Kriterium zum Baustein
-Aus den Antworten des Endkunden entstehen Kriterien wie Gebäudegröße, Wärmebedarf, gewünschtes Heizsystem, Warmwasserbedarf und Ausgangssituation (Neubau oder Sanierung). Wenn der Endkunde seine Daten eingibt, ist also bekannt, was der Endkunde angibt, aber noch nicht, welche Bausteine benötigt werden. Diese ermittelt das System in folgenden Schritten:
-
-1. **Wärmebedarf abschätzen:** aus bekanntem Verbrauch oder aus Fläche und Gebäudezustand.
-2. **Wärmeerzeuger wählen:** den Baustein der gewünschten Technologie, dessen Eignungsbereich zum Wärmebedarf passt. Hat der Endkunde beim gewünschten Heizsystem „Ich weiß nicht“ angegeben, wählen Regeln den Wärmeerzeuger.
-3. **Zusatzbausteine ergänzen:** über Regeln der Form „Bedingung → Baustein, Menge“. Alle zutreffenden Regeln werden angewendet; liefern mehrere Regeln denselben Baustein, werden die Mengen addiert.
-4. **Preis berechnen:** Preise aller Bausteine summieren und als Preisspanne ausgeben.
-5. **Annahmen und Hinweise** ins PDF übernehmen.
+### Von den Antworten zum Angebot
+1. **Bausteine wählen:** über Regeln der Form „Bedingung → Baustein, Menge“. Alle zutreffenden Regeln werden angewendet; liefern mehrere Regeln denselben Baustein, werden die Mengen addiert.
+2. **Preis berechnen:** Summe aus Preis × Menge aller Bausteine; daraus ergibt sich die Preisspanne durch einen Ab- bzw. Aufschlag in Prozent, den der AG festlegt.
+3. **Annahmen und Hinweise** ins PDF übernehmen.
 
 Wie Regeln aufgebaut sind und gepflegt werden, beschreibt das Kapitel „Pflege von Fragen und Regeln“. Beispiele für Regeln:
 
 | Bedingung | Baustein |
 | --------- | -------- |
-| Heizsystem Biomasse | Pufferspeicher passend zur Kesselleistung |
+| Heizsystem Pellets | Pelletkessel |
+| Heizsystem Biomasse | Pufferspeicher |
 | Warmwasser soll über die neue Heizung laufen | Warmwasserspeicher passend zur Personenzahl |
 | Sanierung mit bestehender Heizung | Demontage der Altanlage |
-| Mehrere Heizkreise | eine Heizkreisgruppe je Heizkreis |
+| Mehrere Heizkreise | Heizkreisgruppe |
 
 ### Sonderfälle
 - **Unbekannte Angaben** („Ich weiß nicht“): Das System verwendet einen Standardwert und weist ihn im PDF als Annahme aus.
-- **Kein passender Baustein**, etwa bei sehr hohem Wärmebedarf oder einem Sonderwunsch: Es wird kein automatisches Angebot erstellt; der Lead wird für eine persönliche Beratung markiert.
-- **Mehrere passende Wärmeerzeuger:** Da ein Angebot genau einen Wärmeerzeuger enthält, wird kein automatisches Angebot erstellt; der Lead wird für eine persönliche Beratung markiert.
-- **Unlogische oder technisch ungünstige Kombinationen**, etwa Kühlen mit Heizkörpern oder eine Wärmepumpe bei hoher Vorlauftemperatur: Das System erkennt sie bereits bei der Eingabe und weist den Endkunden darauf hin. Bei technisch nur bedingt passenden Kombinationen wird zusätzlich der Hinweis „Prüfung vor Ort nötig“ gespeichert und im PDF ausgewiesen.
+- **Persönliche Beratung:** Trifft eine Regel „persönliche Beratung“ zu, etwa bei einem Sonderwunsch, oder wurde kein Baustein ausgewählt, wird kein automatisches Angebot erstellt; der Lead wird für eine persönliche Beratung markiert.
+- **Unlogische oder technisch ungünstige Kombinationen**, etwa Kühlen mit Heizkörpern: Welche Kombinationen das sind, wird über Regeln mit der Aktion „Hinweis an den Endkunden“ festgelegt. Der Hinweis erscheint bereits bei der Eingabe.
 
 ### Pflege der Bausteine
-Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank übernommen; der Zugriff auf die Firmendatenbank erfolgt nur lesend. Leistung und Eignung pflegt der Administrator in der Verwaltungskonsole, ohne Programmierung; die Regeln werden wie im Kapitel „Pflege von Fragen und Regeln“ beschrieben gepflegt. Der Abgleich läuft regelmäßig, damit die Preise aktuell bleiben.
+Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank übernommen; der Zugriff auf die Firmendatenbank erfolgt nur lesend. Die Regeln werden wie im Kapitel „Pflege von Fragen und Regeln“ beschrieben gepflegt. Der Abgleich läuft regelmäßig, damit die Preise aktuell bleiben.
 
 ## Pflege von Fragen und Regeln
 Fragen und Regeln sind nicht fest vorgegeben, sondern werden in der Verwaltungskonsole gepflegt, ohne Programmierung. Der Administrator und der Geschäftsführer dürfen sie bearbeiten und veröffentlichen; Mitarbeiter können sie nur ansehen.
@@ -103,7 +87,9 @@ Eine Mehrfachauswahl ist nicht vorgesehen. Freitextfragen gibt es ebenfalls nich
 
 **Änderungen an Fragen:** Fragen dürfen geändert, deaktiviert und gelöscht werden; Fragetext, Hilfetext, Antwortmöglichkeiten, Antworttyp und Position sind frei änderbar. Eine neue Frage darf einen bereits verwendeten Key übernehmen, etwa wenn eine Frage neu formuliert wird. Dann gelten bestehende Regeln für diesen Key weiter, und Leads verschiedener Versionen lassen sich in der Verwaltungsapp gemeinsam nach diesem Key filtern. Der Antworttyp gehört zur Frage: Ändert er sich, behält der Key seinen Namen, Regeln mit unpassenden Vergleichen meldet die Prüfung, und alte Leads behalten ihren damaligen Antworttyp. Auswertungen über Versionen hinweg sind für diesen Key dann nur eingeschränkt möglich.
 
-**Feste Keys:** Einige Keys werden für den Ablauf zwingend gebraucht: das gewünschte Heizsystem und die Angaben, aus denen der Wärmebedarf abgeschätzt wird (Verbrauch, Fläche, Gebäudezustand). In jeder Version muss genau eine aktive Frage jeden dieser Keys befüllen, und zwar mit dem Antworttyp, den der Ablauf erwartet. Wie diese Frage formuliert ist und an welcher Position sie steht, darf sich ändern. Kontaktdaten und Datenschutz-Zustimmung sind keine Fragen des Fragenkatalogs, sondern fester Bestandteil am Ende des Konfigurators. Wie der Wärmebedarf abgeschätzt wird, ist nicht über Regeln einstellbar.
+Kontaktdaten und Datenschutz-Zustimmung sind keine Fragen des Fragenkatalogs, sondern fester Bestandteil am Ende des Konfigurators.
+
+**Heizsystem im Lead:** Die Antwort auf die Frage mit dem Key `heizsystem` wird beim Lead zusätzlich als gewünschtes Heizsystem gespeichert, damit Leadliste und Filter es anzeigen können. Gibt es keine Frage mit diesem Key oder wurde „Ich weiß nicht“ gewählt, bleibt das Heizsystem leer.
 
 ### Bedingungen
 Eine Bedingung vergleicht den Wert eines Keys mit einem Wert, zum Beispiel „heizsystem ist gleich Biomasse“. Welche Vergleiche möglich sind, hängt vom Antworttyp der Frage ab, die den Key befüllt:
@@ -123,11 +109,8 @@ Eine Regel besteht aus einem Namen, den Bedingungen, einer Aktion und dem Merkma
 | Aktion | Beschreibung | Beispiel |
 | ------ | ------------ | -------- |
 | Baustein mit fester Menge | fügt eine feste Anzahl eines Bausteins hinzu | heizsystem = Biomasse → 1 Stück Pufferspeicher |
-| Baustein mit Menge aus Antwort | Menge ist der Wert eines Keys, der von einer Frage vom Typ Zahl befüllt wird | eine Heizkreisgruppe je Heizkreis |
-| Wärmeerzeuger wählen | nur, wenn beim gewünschten Heizsystem „Ich weiß nicht“ angegeben wurde | heizsystem wurde mit „Ich weiß nicht“ beantwortet UND … → Wärmeerzeuger X |
 | Folgefrage einblenden | eine Frage wird nur angezeigt, wenn die Bedingungen erfüllt sind | Wärmequelle nur bei heizsystem = Wärmepumpe |
 | Hinweis an den Endkunden | Hinweis bei unlogischen oder ungünstigen Kombinationen schon während der Eingabe | Kühlen mit Heizkörpern |
-| „Prüfung vor Ort nötig“ | Hinweis wird beim Lead festgehalten und ins PDF übernommen | Wärmepumpe bei hoher Vorlauftemperatur |
 | Persönliche Beratung | kein automatisches Angebot, Lead für persönliche Beratung markieren | Sonderwunsch |
 
 Bausteine werden in Regeln mit ihrer Artikelnummer angegeben. Die konkreten Regeln und Standardwerte legt der AG fest.
@@ -136,7 +119,7 @@ Bausteine werden in Regeln mit ihrer Artikelnummer angegeben. Die konkreten Rege
 Änderungen an Fragen und Regeln wirken nicht sofort. Sie werden zunächst in einem Entwurf gesammelt:
 
 1. **Bearbeiten:** Fragen und Regeln im Entwurf anlegen, ändern, verschieben, aktivieren, deaktivieren oder löschen.
-2. **Automatische Prüfung:** Das System meldet unter anderem Regeln, die einen Key verwenden, den keine aktive Frage befüllt, Regeln, die sich auf eine entfernte Antwortmöglichkeit oder einen inaktiven bzw. nicht mehr vorhandenen Baustein beziehen, Keys, die von mehr als einer Frage befüllt werden, feste Keys ohne passende aktive Frage, Vergleiche, die nicht zum Antworttyp passen, Folgefragen, die sich gegenseitig bedingen, und Folgefragen, die vor der Frage stehen, von der sie abhängen.
+2. **Automatische Prüfung:** Das System meldet unter anderem Regeln, die einen Key verwenden, den keine aktive Frage befüllt, Regeln, die sich auf eine entfernte Antwortmöglichkeit oder einen inaktiven bzw. nicht mehr vorhandenen Baustein beziehen, Keys, die von mehr als einer Frage befüllt werden, Vergleiche, die nicht zum Antworttyp passen, Folgefragen, die sich gegenseitig bedingen, und Folgefragen, die vor der Frage stehen, von der sie abhängen.
 3. **Testmodus:** Der Benutzer gibt Beispielantworten ein und sieht, welche Fragen eingeblendet werden, welche Regeln zutreffen, welche Bausteine gewählt werden und welche Kostenspanne entsteht.
 4. **Bestätigen:** Erst danach wird der Entwurf veröffentlicht. Ab diesem Zeitpunkt verwendet der Heizungskonfigurator die neuen Fragen und Regeln.
 
@@ -151,7 +134,6 @@ Veröffentlichte Versionen werden nicht mehr verändert. Frühere Versionen kön
 
 ### Offene Punkte
 - Umgang mit Konfigurationen, die während einer Veröffentlichung laufen (Vorschlag: Die Konfiguration bleibt bis zum Absenden bei der Version, mit der sie begonnen wurde)
-- Rundung, wenn eine Menge aus einer Zahl-Antwort mit Kommastellen übernommen wird
 - konkrete Fragen, Standardwerte und Regeln (stellt der AG bereit)
 
 ## Leadverwaltung
@@ -161,9 +143,10 @@ Ein Lead entsteht automatisch, wenn der Kunde den Konfigurator absendet, und wir
 - Kontaktdaten des Kunden und die Zustimmung zum Datenschutz
 - sonstige Bemerkungen des Kunden, falls angegeben
 - die Versionsnummer des Fragenkatalogs, mit der die Konfiguration erstellt wurde
+- das gewünschte Heizsystem (siehe „Heizsystem im Lead“)
 - alle Antworten aus dem Fragenkatalog mit Key und Fragetext zum Anfragezeitpunkt; bei „Ich weiß nicht“ den verwendeten Standardwert als Annahme
 - die ermittelten Bausteine und die Kostenschätzung
-- die Begründung: welche Regeln zugetroffen haben, mit ihren Bedingungen, den dafür maßgeblichen Antworten und dem jeweiligen Ergebnis, sowie wie der Wärmeerzeuger gewählt wurde
+- die Begründung: welche Regeln zugetroffen haben, mit ihren Bedingungen, den dafür maßgeblichen Antworten und dem jeweiligen Ergebnis
 - Zeitpunkt der Anfrage
 - Status, zuständigen Mitarbeiter und Notizen des AG
 
@@ -196,7 +179,7 @@ Die Verwaltungskonsole ist eine eigene Oberfläche, getrennt vom öffentlichen K
 - Versionsnummer des Fragenkatalogs zum Anfragezeitpunkt
 - alle Fragen dieser Version, jeweils gekennzeichnet als beantwortet oder nicht eingeblendet
 - alle Antworten des Kunden; Standardwerte bei „Ich weiß nicht“ sind als Annahme gekennzeichnet
-- die gewählten Bausteine mit Begründung: zutreffende Regeln mit Bedingung im Klartext (z. B. „heizsystem ist gleich Biomasse“), den maßgeblichen Antworten und dem Ergebnis (Baustein und Menge, Hinweis, „Prüfung vor Ort nötig“, persönliche Beratung) sowie die Art der Wärmeerzeuger-Auswahl
+- die gewählten Bausteine mit Begründung: zutreffende Regeln mit Bedingung im Klartext (z. B. „heizsystem ist gleich Biomasse“), den maßgeblichen Antworten und dem Ergebnis (Baustein und Menge, Hinweis, persönliche Beratung)
 - das grobe Angebot als PDF
 - Kontaktdaten mit Schnellaktionen (anrufen, E-Mail schreiben)
 - Statusverlauf und Notizen

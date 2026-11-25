@@ -51,7 +51,7 @@ Vor Änderungen die relevanten Dokumente und den vorhandenen Code lesen. Bei Wid
 
 ## Fachliche Leitplanken
 
-- Keine Wärmebedarfsformeln, Grenzwerte, Preise, Standardwerte, Produktregeln oder Prioritätsgewichtungen erfinden. Fehlen freigegebene Angaben, nachfragen.
+- Keine Preise, Prozentsätze für die Preisspanne, Standardwerte, Produktregeln oder Prioritätsgewichtungen erfinden. Fehlen freigegebene Angaben, nachfragen.
 - Artikel und Preise stammen aus der Firmendatenbank und werden über eine API-Schnittstelle übernommen; Zugriff darauf nur lesend.
 - Antworten eines Leads bleiben dem Fragenstand zum Anfragezeitpunkt zugeordnet: Der Lead speichert Versionsnummer, Fragetexte, Antworten und die Begründung (zutreffende Regeln) selbst. Regeln neuer Versionen werden nie auf alte Leads angewendet.
 - Veröffentlichte Versionen des Fragenkatalogs sind unveränderlich. Der Key ist die Variable, in der eine Antwort gespeichert wird; Regeln beziehen sich auf Keys. Pro Version befüllt jeder Key genau eine Frage.
@@ -73,7 +73,7 @@ Ohne Freigabe nichts festlegen oder konfigurieren zu:
 - Datenbankverschlüsselung, Passwort-Hashing-Verfahren
 - Authentifizierung: JWT laut Anforderungen, aber Benutzer, Rollen und Zeitpunkt offen
 - Backupverfahren, Aufbewahrung und Löschung von Leads
-- Konkrete Fragen, Standardwerte, Wärmebedarfs- und Preisregeln, Details der API-Anbindung an die Firmendatenbank
+- Konkrete Fragen, Standardwerte, Regeln, Prozentsatz der Preisspanne, Details der API-Anbindung an die Firmendatenbank
 - Energieberatung (in den Anforderungen erwähnt, fachlich nicht ausgearbeitet)
 
 ## Anwendungsspezifisch
@@ -85,8 +85,8 @@ Ohne Freigabe nichts festlegen oder konfigurieren zu:
 - Öffentlich erreichbar, kein Kundenlogin. Rate-Limiting schützt den Konfigurator (Must); reCAPTCHA ist vorgesehen (Should).
 - Bedingte Fragen zu bestehender Heizung, Gebäude, Warmwasser und gewünschtem Heizsystem. Fragen, Antwortoptionen, Reihenfolge, Bedingungen und Regeln sind konfigurierbar und versioniert; Ablauf siehe `docs/Fachliches_Konzept.md` („Pflege von Fragen und Regeln“) und `docs/Solution_Design.md`.
 - „Ich weiß nicht“ nur mit freigegebenem Standardwert behandeln; Wert und Annahme in Lead und PDF festhalten.
-- Wärmebedarf nach freigegebenen Regeln aus dem Verbrauch, ersatzweise aus Fläche und Gebäudezustand. Preise nur als unverbindliche Spanne.
-- Ein Angebot enthält genau einen passenden, aktiven Wärmeerzeuger plus regelbasierte Zusatzbausteine. Kein passender Baustein: kein automatisches Angebot, Lead für persönliche Beratung markieren. Unlogische oder technisch ungünstige Kombinationen schon bei der Eingabe erkennen und den Endkunden darauf hinweisen; bei bedingter Eignung zusätzlich Hinweis „Prüfung vor Ort nötig“ speichern und ins PDF übernehmen.
+- Preise nur als unverbindliche Spanne: Summe aus Preis × Menge, abzüglich bzw. zuzüglich eines Prozentsatzes, den der AG festlegt.
+- Bausteine werden ausschließlich über Regeln gewählt; nur aktive Bausteine. Trifft eine Regel „persönliche Beratung“ zu oder wurde kein Baustein gewählt: kein automatisches Angebot, Lead für persönliche Beratung markieren. Unlogische oder technisch ungünstige Kombinationen werden über Hinweis-Regeln festgelegt und dem Endkunden schon bei der Eingabe angezeigt.
 - Nach dem Absenden: Lead mit Antworten, Bausteinen und Schätzung an das Backend der Verwaltungsapp übergeben, PDF mit Kostenspanne, Bausteinen, Annahmen und Hinweisen erstellen, den AG und alle weiteren Benutzer mit aktivierter Benachrichtigung per E-Mail über den neuen Lead informieren (nur Hinweis und Link, Details stehen in der Verwaltungsapp). Ein fehlgeschlagener Versand darf die Leadspeicherung nicht verhindern.
 - Datenschutz-Zustimmung mit Zeitpunkt speichern.
 
