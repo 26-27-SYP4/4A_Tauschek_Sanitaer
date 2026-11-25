@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 
 import { BASE_PATH } from './swagger';
-import {environment} from '../environments/environment.development'
+import {environment} from '../environments/environment'
 
 export const appConfig: ApplicationConfig = {
   providers: [
