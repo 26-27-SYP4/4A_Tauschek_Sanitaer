@@ -23,11 +23,11 @@ export class App implements OnInit{
   private loansService = inject(LoansService);
   protected books = computed(() => this.booksRef.value());
   protected filterText = signal<string>("");
-  protected selectedAuthorId = signal(0);
+  protected selectedAuthorId = signal<number | undefined>(undefined);
 
   protected booksStatus = computed(() => this.booksRef.status());
 
-  protected selectedBookId = signal(0);
+  protected selectedBookId = signal<number | undefined>(undefined);
   protected bookDetail = computed(() => this.bookDetailRef.value());
   
   private bookDetailRef = rxResource({
@@ -49,12 +49,12 @@ export class App implements OnInit{
 
   private booksRef = rxResource({
     params: () => ({
-    filter: this.filterText() || "",
-    authorId: this.selectedAuthorId() || 0
+    filter: this.filterText() || undefined,
+    authorId: this.selectedAuthorId() ?? undefined
   }),
     stream: ({ params }) => {
     
-    return this.booksService.booksGet(params.filter===''?undefined:params.filter, params.authorId===0?undefined:params.authorId);
+    return this.booksService.booksGet(params.filter, params.authorId);
   }
 });
 
@@ -74,7 +74,7 @@ export class App implements OnInit{
   
   resetFilter(){
     this.filterText.set("");
-    this.selectedAuthorId.set(0);
+    this.selectedAuthorId.set(undefined);
   }
 
   reloadCatalogue(){
