@@ -37,11 +37,7 @@ builder.Services
   );
 builder.Services.AddLogging(x => x.AddCustomFormatter());
 
-string? connectionString = builder.Configuration.GetConnectionString("BookLoans");
-Console.ForegroundColor = ConsoleColor.Cyan;
-Console.WriteLine($"++++ ConnectionString: {connectionString}");
-Console.ResetColor();
-builder.Services.AddDbContext <BookLoansContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext <BookLoansContext>(options => options.UseInMemoryDatabase("BookLoans"));
 #endregion
 
 builder.Services.AddScoped<DbService>();
