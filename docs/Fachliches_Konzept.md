@@ -1,6 +1,6 @@
 # Fachliches Konzept: Heizungskonfigurator
-Version: 0.4.0  
-Datum: 11.11.2026  
+Version: 0.5.0  
+Datum: 18.11.2026  
 Autor(en): Geßwagner David, Tauschek Stefan, Weißenhofer Moritz, Wiesner Felix  
 Auftraggeber: Tauschek Sanitär Heizung GmbH  
 AG bedeutet im Folgenden: Auftraggeber  
@@ -18,9 +18,9 @@ Für die Entwicklung des Heizungskonfigurators wurde vom Geschäftsführer ein F
 
 Der Fragenkatalog umfasst mehrere Schritte, in denen Informationen zum bestehenden Heizsystem, zum Gebäude, zum Warmwasserbedarf und zum gewünschten neuen Heizsystem erhoben werden. Je nach Auswahl werden zusätzliche Fragen eingeblendet, um die Anforderungen und Wünsche der Endkunden möglichst genau zu erfassen.
 
-Am Ende des Konfigurationsprozesses geben die Endkunden ihre Kontaktdaten bekannt und stimmen den Datenschutzbestimmungen zu. Die gesammelten Informationen dienen als Grundlage für eine erste Kostenschätzung und die anschließende Bearbeitung der Kundenanfragen.
+Am Ende des Konfigurationsprozesses geben die Endkunden ihre Kontaktdaten bekannt, können optional sonstige Bemerkungen eintragen und stimmen den Datenschutzbestimmungen zu. Die gesammelten Informationen dienen als Grundlage für eine erste Kostenschätzung und die anschließende Bearbeitung der Kundenanfragen.
 
-Der Konfigurator muss flexibel in der Erweiterbarkeit der Fragen sein, damit bestehende Fragen angepasst, entfernt oder neue Fragen hinzugefügt werden können. Für Fragen, die Endkunden möglicherweise nicht beantworten können, müssen geeignete alternative Antwortmöglichkeiten gefunden werden. An diesen Anpassungen wird derzeit noch gearbeitet.
+Der Konfigurator muss flexibel in der Erweiterbarkeit der Fragen sein, damit bestehende Fragen angepasst, entfernt oder neue Fragen hinzugefügt werden können. Für Fragen, die Endkunden möglicherweise nicht beantworten können, gibt es die Antwort „Ich weiß nicht“ mit einem hinterlegten Standardwert. Wie Fragen und Regeln gepflegt und versioniert werden, beschreibt das Kapitel „Pflege von Fragen und Regeln“. Der vom Geschäftsführer bereitgestellte Fragenkatalog bildet die erste Version.
 
 ## Bausteine
 Die Kostenschätzung wird aus standardisierten Bausteinen zusammengesetzt. Ein Baustein ist ein konkretes, vordefiniertes Produkt oder Leistungspaket aus dem Sortiment des AG, zum Beispiel eine Luft-Wärmepumpe mit bestimmter Heizleistung, die für ein großes Einfamilienhaus geeignet ist. Das System wählt anhand der Antworten des Endkunden passende Bausteine aus und zählt ihre Preise zu einem groben Angebot zusammen.
@@ -52,12 +52,12 @@ Die Bausteine werden über eine API-Schnittstelle aus der Firmendatenbank des AG
 Aus den Antworten des Endkunden entstehen Kriterien wie Gebäudegröße, Wärmebedarf, gewünschtes Heizsystem, Warmwasserbedarf und Ausgangssituation (Neubau oder Sanierung). Wenn der Endkunde seine Daten eingibt, ist also bekannt, was der Endkunde angibt, aber noch nicht, welche Bausteine benötigt werden. Diese ermittelt das System in folgenden Schritten:
 
 1. **Wärmebedarf abschätzen:** aus bekanntem Verbrauch oder aus Fläche und Gebäudezustand.
-2. **Wärmeerzeuger wählen:** den Baustein der gewünschten Technologie, dessen Eignungsbereich zum Wärmebedarf passt.
-3. **Zusatzbausteine ergänzen:** über Regeln der Form „Bedingung → Baustein, Menge“.
+2. **Wärmeerzeuger wählen:** den Baustein der gewünschten Technologie, dessen Eignungsbereich zum Wärmebedarf passt. Hat der Endkunde beim gewünschten Heizsystem „Ich weiß nicht“ angegeben, wählen Regeln den Wärmeerzeuger.
+3. **Zusatzbausteine ergänzen:** über Regeln der Form „Bedingung → Baustein, Menge“. Alle zutreffenden Regeln werden angewendet; liefern mehrere Regeln denselben Baustein, werden die Mengen addiert.
 4. **Preis berechnen:** Preise aller Bausteine summieren und als Preisspanne ausgeben.
 5. **Annahmen und Hinweise** ins PDF übernehmen.
 
-Beispiele für Regeln:
+Wie Regeln aufgebaut sind und gepflegt werden, beschreibt das Kapitel „Pflege von Fragen und Regeln“. Beispiele für Regeln:
 
 | Bedingung | Baustein |
 | --------- | -------- |
@@ -69,20 +69,105 @@ Beispiele für Regeln:
 ### Sonderfälle
 - **Unbekannte Angaben** („Ich weiß nicht“): Das System verwendet einen Standardwert und weist ihn im PDF als Annahme aus.
 - **Kein passender Baustein**, etwa bei sehr hohem Wärmebedarf oder einem Sonderwunsch: Es wird kein automatisches Angebot erstellt; der Lead wird für eine persönliche Beratung markiert.
+- **Mehrere passende Wärmeerzeuger:** Da ein Angebot genau einen Wärmeerzeuger enthält, wird kein automatisches Angebot erstellt; der Lead wird für eine persönliche Beratung markiert.
 - **Unlogische oder technisch ungünstige Kombinationen**, etwa Kühlen mit Heizkörpern oder eine Wärmepumpe bei hoher Vorlauftemperatur: Das System erkennt sie bereits bei der Eingabe und weist den Endkunden darauf hin. Bei technisch nur bedingt passenden Kombinationen wird zusätzlich der Hinweis „Prüfung vor Ort nötig“ gespeichert und im PDF ausgewiesen.
 
 ### Pflege der Bausteine
-Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank übernommen; der Zugriff auf die Firmendatenbank erfolgt nur lesend. Leistung, Eignung und Regeln pflegt der Administrator in der Verwaltungskonsole, ohne Programmierung. Der Abgleich läuft regelmäßig, damit die Preise aktuell bleiben.
+Artikel und Preise werden über eine API-Schnittstelle aus der Firmendatenbank übernommen; der Zugriff auf die Firmendatenbank erfolgt nur lesend. Leistung und Eignung pflegt der Administrator in der Verwaltungskonsole, ohne Programmierung; die Regeln werden wie im Kapitel „Pflege von Fragen und Regeln“ beschrieben gepflegt. Der Abgleich läuft regelmäßig, damit die Preise aktuell bleiben.
+
+## Pflege von Fragen und Regeln
+Fragen und Regeln sind nicht fest vorgegeben, sondern werden in der Verwaltungskonsole gepflegt, ohne Programmierung. Der Administrator und der Geschäftsführer dürfen sie bearbeiten und veröffentlichen; Mitarbeiter können sie nur ansehen.
+
+### Fragen
+Die Antwort des Endkunden auf eine Frage wird in einer Variable gespeichert; deren Name ist der Key (z. B. heizsystem = Biomasse, wohnflaeche = 140). Regeln beziehen sich auf Keys, nicht auf einzelne Fragen. In einer Version befüllt jeder Key genau eine Frage. Zu jeder Frage werden festgelegt:
+
+| Merkmal | Beschreibung | Beispiel |
+| ------- | ------------ | -------- |
+| Key | Variable, in der die Antwort gespeichert wird und auf die sich Regeln beziehen | heizsystem |
+| Fragetext | Text, wie ihn der Endkunde sieht | Welches Heizsystem wünschen Sie sich? |
+| Antworttyp | Auswahl, Zahl oder Ja/Nein (siehe unten) | Auswahl |
+| Hilfetext | optionaler Erklärungstext zur Frage | Wo finde ich meinen Verbrauch? |
+| „Ich weiß nicht“ | ob diese Antwort angeboten wird; falls ja, mit Standardwert | ja, Standardwert laut Freigabe des AG |
+| Position | Stelle der Frage in der Reihenfolge | 3 |
+| Aktiv | ob die Frage im Heizungskonfigurator verwendet wird | ja / nein |
+
+| Antworttyp | Zusätzliche Angaben | Eingabe im Konfigurator |
+| ---------- | ------------------- | ----------------------- |
+| Auswahl (Enum) | Liste der Antwortmöglichkeiten | Auswahl genau einer Möglichkeit |
+| Zahl (Number) | Einheit, Minimum, Maximum; Kommazahlen sind erlaubt | Zahleneingabe innerhalb der Grenzen |
+| Ja/Nein (Boolean) | – | Ja oder Nein |
+
+Eine Mehrfachauswahl ist nicht vorgesehen. Freitextfragen gibt es ebenfalls nicht, weil sich freie Texte nicht verlässlich auswerten lassen. Einzige Ausnahme ist das optionale Feld „Sonstige Bemerkungen“ am Ende des Konfigurators: Es wird nicht in Regeln verwendet, sondern nur im Lead angezeigt.
+
+**Reihenfolge:** Der Administrator bzw. der Geschäftsführer ordnet die Fragen in der Verwaltungskonsole durch Verschieben an. Der Heizungskonfigurator zeigt sie in dieser Reihenfolge, eine Frage pro Seite. Folgefragen erscheinen an ihrer Position nur dann, wenn ihre Bedingungen erfüllt sind.
+
+**Änderungen an Fragen:** Fragen dürfen geändert, deaktiviert und gelöscht werden; Fragetext, Hilfetext, Antwortmöglichkeiten, Antworttyp und Position sind frei änderbar. Eine neue Frage darf einen bereits verwendeten Key übernehmen, etwa wenn eine Frage neu formuliert wird. Dann gelten bestehende Regeln für diesen Key weiter, und Leads verschiedener Versionen lassen sich in der Verwaltungsapp gemeinsam nach diesem Key filtern. Der Antworttyp gehört zur Frage: Ändert er sich, behält der Key seinen Namen, Regeln mit unpassenden Vergleichen meldet die Prüfung, und alte Leads behalten ihren damaligen Antworttyp. Auswertungen über Versionen hinweg sind für diesen Key dann nur eingeschränkt möglich.
+
+**Feste Keys:** Einige Keys werden für den Ablauf zwingend gebraucht: das gewünschte Heizsystem und die Angaben, aus denen der Wärmebedarf abgeschätzt wird (Verbrauch, Fläche, Gebäudezustand). In jeder Version muss genau eine aktive Frage jeden dieser Keys befüllen, und zwar mit dem Antworttyp, den der Ablauf erwartet. Wie diese Frage formuliert ist und an welcher Position sie steht, darf sich ändern. Kontaktdaten und Datenschutz-Zustimmung sind keine Fragen des Fragenkatalogs, sondern fester Bestandteil am Ende des Konfigurators. Wie der Wärmebedarf abgeschätzt wird, ist nicht über Regeln einstellbar.
+
+### Bedingungen
+Eine Bedingung vergleicht den Wert eines Keys mit einem Wert, zum Beispiel „heizsystem ist gleich Biomasse“. Welche Vergleiche möglich sind, hängt vom Antworttyp der Frage ab, die den Key befüllt:
+
+| Antworttyp | Vergleiche |
+| ---------- | ---------- |
+| Zahl | gleich, ungleich, kleiner, kleiner gleich, größer, größer gleich |
+| Auswahl | gleich, ungleich (Wert aus der Liste der Antwortmöglichkeiten) |
+| Ja/Nein | ist Ja, ist Nein |
+| alle Antworttypen | wurde mit „Ich weiß nicht“ beantwortet |
+
+Mehrere Bedingungen werden mit UND und ODER verknüpft. Damit die Darstellung übersichtlich bleibt, werden Bedingungen in Gruppen zusammengefasst: Innerhalb einer Gruppe gilt UND, zwischen den Gruppen gilt ODER. Beispiel: (heizsystem ist gleich Wärmepumpe UND wohnfläche größer 150) ODER (anzahl_heizkreise größer 1).
+
+### Regeln
+Eine Regel besteht aus einem Namen, den Bedingungen, einer Aktion und dem Merkmal Aktiv. Inaktive Regeln werden nicht angewendet, bleiben aber erhalten und können jederzeit wieder aktiviert werden.
+
+| Aktion | Beschreibung | Beispiel |
+| ------ | ------------ | -------- |
+| Baustein mit fester Menge | fügt eine feste Anzahl eines Bausteins hinzu | heizsystem = Biomasse → 1 Stück Pufferspeicher |
+| Baustein mit Menge aus Antwort | Menge ist der Wert eines Keys, der von einer Frage vom Typ Zahl befüllt wird | eine Heizkreisgruppe je Heizkreis |
+| Wärmeerzeuger wählen | nur, wenn beim gewünschten Heizsystem „Ich weiß nicht“ angegeben wurde | heizsystem wurde mit „Ich weiß nicht“ beantwortet UND … → Wärmeerzeuger X |
+| Folgefrage einblenden | eine Frage wird nur angezeigt, wenn die Bedingungen erfüllt sind | Wärmequelle nur bei heizsystem = Wärmepumpe |
+| Hinweis an den Endkunden | Hinweis bei unlogischen oder ungünstigen Kombinationen schon während der Eingabe | Kühlen mit Heizkörpern |
+| „Prüfung vor Ort nötig“ | Hinweis wird beim Lead festgehalten und ins PDF übernommen | Wärmepumpe bei hoher Vorlauftemperatur |
+| Persönliche Beratung | kein automatisches Angebot, Lead für persönliche Beratung markieren | Sonderwunsch |
+
+Bausteine werden in Regeln mit ihrer Artikelnummer angegeben. Die konkreten Regeln und Standardwerte legt der AG fest.
+
+### Entwurf, Prüfung und Veröffentlichung
+Änderungen an Fragen und Regeln wirken nicht sofort. Sie werden zunächst in einem Entwurf gesammelt:
+
+1. **Bearbeiten:** Fragen und Regeln im Entwurf anlegen, ändern, verschieben, aktivieren, deaktivieren oder löschen.
+2. **Automatische Prüfung:** Das System meldet unter anderem Regeln, die einen Key verwenden, den keine aktive Frage befüllt, Regeln, die sich auf eine entfernte Antwortmöglichkeit oder einen inaktiven bzw. nicht mehr vorhandenen Baustein beziehen, Keys, die von mehr als einer Frage befüllt werden, feste Keys ohne passende aktive Frage, Vergleiche, die nicht zum Antworttyp passen, Folgefragen, die sich gegenseitig bedingen, und Folgefragen, die vor der Frage stehen, von der sie abhängen.
+3. **Testmodus:** Der Benutzer gibt Beispielantworten ein und sieht, welche Fragen eingeblendet werden, welche Regeln zutreffen, welche Bausteine gewählt werden und welche Kostenspanne entsteht.
+4. **Bestätigen:** Erst danach wird der Entwurf veröffentlicht. Ab diesem Zeitpunkt verwendet der Heizungskonfigurator die neuen Fragen und Regeln.
+
+### Versionierung
+Jede Veröffentlichung erzeugt eine neue Version des gesamten Fragenkatalogs mit allen Regeln. Zu jeder Version werden festgehalten:
+- fortlaufende Versionsnummer
+- Zeitpunkt und Benutzer der Veröffentlichung
+- optionaler Kommentar
+- Änderungsliste: neue, geänderte, verschobene, deaktivierte und gelöschte Fragen sowie neue, geänderte, aktivierte, deaktivierte und gelöschte Regeln
+
+Veröffentlichte Versionen werden nicht mehr verändert. Frühere Versionen können eingesehen werden; die Rückkehr zu einer früheren Version erzeugt eine neue Version mit deren Inhalt. Leads werden durch neue Versionen nicht neu berechnet (siehe „Entstehung eines Leads“).
+
+### Offene Punkte
+- Umgang mit Konfigurationen, die während einer Veröffentlichung laufen (Vorschlag: Die Konfiguration bleibt bis zum Absenden bei der Version, mit der sie begonnen wurde)
+- Rundung, wenn eine Menge aus einer Zahl-Antwort mit Kommastellen übernommen wird
+- konkrete Fragen, Standardwerte und Regeln (stellt der AG bereit)
 
 ## Leadverwaltung
 
 ### Entstehung eines Leads
 Ein Lead entsteht automatisch, wenn der Kunde den Konfigurator absendet, und wird im Backend der Verwaltungsapp gespeichert. Er enthält:
 - Kontaktdaten des Kunden und die Zustimmung zum Datenschutz
-- alle Antworten aus dem Fragenkatalog
+- sonstige Bemerkungen des Kunden, falls angegeben
+- die Versionsnummer des Fragenkatalogs, mit der die Konfiguration erstellt wurde
+- alle Antworten aus dem Fragenkatalog mit Key und Fragetext zum Anfragezeitpunkt; bei „Ich weiß nicht“ den verwendeten Standardwert als Annahme
 - die ermittelten Bausteine und die Kostenschätzung
+- die Begründung: welche Regeln zugetroffen haben, mit ihren Bedingungen, den dafür maßgeblichen Antworten und dem jeweiligen Ergebnis, sowie wie der Wärmeerzeuger gewählt wurde
 - Zeitpunkt der Anfrage
 - Status, zuständigen Mitarbeiter und Notizen des AG
+
+Antworten und Begründung werden beim Lead selbst gespeichert. Spätere Änderungen an Fragen oder Regeln verändern einen bestehenden Lead daher nicht, und Regeln neuer Versionen werden nicht auf alte Leads angewendet.
 
 ### Status eines Leads
 Jeder Lead hat genau einen Status. Der AG ändert ihn manuell; jede Änderung wird mit Zeitpunkt und Benutzer protokolliert.
@@ -108,7 +193,10 @@ Die Verwaltungskonsole ist eine eigene Oberfläche, getrennt vom öffentlichen K
 - neue Leads sind hervorgehoben
 
 **Lead-Detailansicht**
-- alle Antworten des Kunden und die gewählten Bausteine
+- Versionsnummer des Fragenkatalogs zum Anfragezeitpunkt
+- alle Fragen dieser Version, jeweils gekennzeichnet als beantwortet oder nicht eingeblendet
+- alle Antworten des Kunden; Standardwerte bei „Ich weiß nicht“ sind als Annahme gekennzeichnet
+- die gewählten Bausteine mit Begründung: zutreffende Regeln mit Bedingung im Klartext (z. B. „heizsystem ist gleich Biomasse“), den maßgeblichen Antworten und dem Ergebnis (Baustein und Menge, Hinweis, „Prüfung vor Ort nötig“, persönliche Beratung) sowie die Art der Wärmeerzeuger-Auswahl
 - das grobe Angebot als PDF
 - Kontaktdaten mit Schnellaktionen (anrufen, E-Mail schreiben)
 - Statusverlauf und Notizen
