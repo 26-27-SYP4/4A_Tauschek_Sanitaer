@@ -72,9 +72,16 @@
 
  th,
  td {
-   padding: 2px;
+   padding: 8px 10px;
    border-bottom: 1px solid #e4ebe6;
    text-align: left;
+   vertical-align: middle;
+ }
+
+td {
+   color: #1d2a25;
+   font-size: 1rem;
+   line-height: 1.4;
  }
 
  th {
@@ -84,6 +91,10 @@
 
  tbody tr {
    cursor: pointer;
+ }
+
+tbody tr:nth-child(even) {
+   background: #fafcfb;
  }
 
  tbody tr:hover,

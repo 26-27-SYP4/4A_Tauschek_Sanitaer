@@ -5,10 +5,10 @@
   <label>Author</label>
   <label>&nbsp;</label>
   <label>&nbsp;</label>
-  <input type="text" [(ngModel)] = 'filterText'/>
-  <select [(ngModel)] = 'selectedAuthorId'>
+  <input type="text" [(ngModel)]="filterText" />
+  <select [(ngModel)]="selectedAuthorId">
     @for (author of authors(); track author.id) {
-      <option [value]="author.id">{{author.name}}</option>
+      <option [ngValue]="author.id">{{ author.name }}</option>
     }
   </select>
   <button (click)="resetFilter()">Clear filters</button>
@@ -18,7 +18,9 @@
 <div class="card">
   <span class="h2">Books</span>
   @if (booksStatus() === 'loading') {
-    <span style="background-color: rgb(128, 199, 128); color: rgb(32, 116, 32);">Loading books...</span>
+    <span style="background-color: rgb(128, 199, 128); color: rgb(32, 116, 32)"
+      >Loading books...</span
+    >
   }
   <table>
     <thead>
@@ -32,78 +34,47 @@
     <tbody>
       @for (book of books(); track $index) {
         <tr>
-          <td>{{book.title}}</td>
-          <td>{{book.authorName}}</td>
-          <td>{{book.year}}</td>
-          <td>{{book.availableCopies}}</td>
+          <td>{{ book.title }}</td>
+          <td>{{ book.authorName }}</td>
+          <td>{{ book.year }}</td>
+          <td>{{ book.availableCopies }}</td>
         </tr>
       }
     </tbody>
   </table>
 </div>
 
-<div style="display: flex;flex-direction:row;gap:10px">
-  <div class="card"
-       style="flex: 1;">
+<div style="display: flex; flex-direction: row; gap: 10px">
+  <div class="card" style="flex: 1">
     <span class="h2">Book details</span>
 
     <div class="input-grid">
       <label>Try an ID</label>
       <label>&nbsp;</label>
-      <input type="number" [(ngModel)] = 'selectedBookId'/>
+      <input type="number" [(ngModel)]="selectedBookId" />
     </div>
-    @if (bookError()) {
-  <div class="error">
-    {{ bookError() }}
-  </div>
-}
-@else if (bookDetail(); as book) {
-  <div class="h3 centered">{{ book.title }}</div>
-
-  <div class="centered">
-    {{ book.authorName }} - {{ book.year }}
-  </div>
-
-  <div>
-    <span class="heading">ISBN</span>
-    <span>{{ book.isbn }}</span>
-  </div>
-
-  <div>
-    <span class="heading">Copies</span>
-    <span>
-      {{ book.availableCopies }} available of {{ book.totalCopies }}
-    </span>
-  </div>
-}
-@else {
-  <div>Select a book or enter an ID to load its details.</div>
-}
-  </div>
-
-  <div class="card"
-       style="flex:1">
-    <div style="display:flex; justify-content: space-between;">
-      <div>
-        <div class="h2">Bookloans</div>
-        @for (loan of loans(); track $index) {
-          <table>
-            <thead>
-              <th>Id</th>
-              <th>Borrowed At:</th>
-              <th>Borrowed From:</th>
-              <th>Returned At:</th>
-            </thead>
-            <tbody>
-              <tr>
-                <td>{{loan.id}}</td>
-                <td>{{loan.borrowedAt}}</td>
-                <td>{{loan.borrowerName}}</td>
-                <td>{{loan.returnedAt}}</td>
-              </tr>
-            </tbody>
-          </table>
-        }
+    @if (selectedBookId() === undefined) {
+      <p>Please enter an Id!</p>
+    } @else if (bookError()) {
+      <div class="error">
+        {{ bookError() }}
       </div>
-    </div>
+    } @else if (bookDetail(); as book) {
+      <div class="h3 centered">{{ book.title }}</div>
+
+      <div class="centered">{{ book.authorName }} - {{ book.year }}</div>
+
+      <div>
+        <span class="heading">ISBN</span>
+        <span>{{ book.isbn }}</span>
+      </div>
+
+      <div>
+        <span class="heading">Copies</span>
+        <span> {{ book.availableCopies }} available of {{ book.totalCopies }} </span>
+      </div>
+    } @else {
+      <div>Select a book or enter an ID to load its details.</div>
+    }
   </div>
+</div>
